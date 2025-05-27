@@ -219,4 +219,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# scss cache
+*.css.map
+.sass-cache/
+
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,visualstudiocode
