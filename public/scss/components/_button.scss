@@ -1,0 +1,107 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.button {
+    @include mixins.button-base;
+    background-color: variables.$blue-color;
+    color: variables.$white-color;
+
+    &:hover {
+        background-color: darken($color: variables.$blue-color, $amount: 10%);
+    }
+
+    &:active {
+        background-color: lighten($color: variables.$blue-color, $amount: 10%);
+    }
+
+    &.disabled {
+        background-color: variables.$gray-color;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &--outline {
+        background-color: white;
+        color: variables.$black-color;
+        border: 2px solid variables.$blue-color;
+        transition: background $button-transition, color $button-transition, border variables.$button-transition;
+        
+        &:hover {
+            background-color: variables.$blue-color;
+            color: variables.$white-color;
+            border: none;
+        }
+
+        &:active {
+            background-color: lighten($color: variables.$blue-color, $amount: 10%);
+            color: variables.$white-color;
+            border: none;
+        }
+    }
+}
+
+.button--red {
+    @include mixins.button-base;
+    background-color: variables.$red-color;
+    color: variables.$white-color;
+
+    &:hover {
+        background-color: darken($color: variables.$red-color, $amount: 10%);
+    }
+
+    &:active {
+        background-color: lighten($color: variables.$red-color, $amount: 10%);
+    }
+
+    &--outline {
+        background-color: white;
+        color: variables.$black-color;
+        border: 2px solid variables.$red-color;
+        transition: background $button-transition, color $button-transition, border variables.$button-transition;
+
+        &:hover {
+            background-color: variables.$red-color;
+            color: variables.$white-color;
+            border: none;
+        }
+
+        &:active {
+            background-color: lighten($color: variables.$red-color, $amount: 10%);
+            color: variables.$white-color;
+            border: none;
+        }
+    }
+}
+
+.button--yellow {
+    @include mixins.button-base;
+    background-color: variables.$yellow-color;
+    color: variables.$black-color;
+
+    &:hover {
+        background-color: darken($color: variables.$yellow-color, $amount: 10%);
+    }
+
+    &:active {
+        background-color: lighten($color: variables.$yellow-color, $amount: 10%);
+    }
+
+    &--outline {
+        background-color: white;
+        color: variables.$black-color;
+        border: 2px solid variables.$yellow-color;
+        transition: background $button-transition, color $button-transition, border variables.$button-transition;
+
+        &:hover {
+            background-color: variables.$yellow-color;
+            color: variables.$black-color;
+            border: none;
+        }
+
+        &:active {
+            background-color: lighten($color: variables.$yellow-color, $amount: 10%);
+            color: variables.$black-color;
+            border: none;
+        }
+    }
+}

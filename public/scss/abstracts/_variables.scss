@@ -1,0 +1,33 @@
+/*
+* 색상 변수
+*/
+$black-color: #292E1E;
+$white-color: #FAFFFD;
+$gray-color: #948B89;
+$blue-color: #3423A6;
+$red-color: #F97068;
+$yellow-color: #F9DC5C;
+
+/*
+* 폰트 경로
+*/
+$font-path: '/fonts';
+
+/*
+* 버튼
+*/
+$button-radius: 22px;
+$button-padding: 0.5em 1.5em;
+$button-transition: 0.2s ease-in-out;
+
+/*
+* 입력란
+*/
+$input-radius: 10px;
+$input-padding: 0.5em 1em;
+$input-border: 1px solid $black-color;
+$input-transition: 0.2s ease-in-out;
+$input-focus-border-color: $blue-color;
+$input-error-border-color: $red-color;
+
+$input-box-shadow: 0 0 5px rgba($red-color, 0.5);
