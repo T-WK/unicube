@@ -1,107 +1,132 @@
-@use '../abstracts/variables';
-@use '../abstracts/mixins';
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
 
 .button {
-    @include mixins.button-base;
-    background-color: variables.$blue-color;
-    color: variables.$white-color;
+  @include mixins.button-base;
+  background-color: variables.$blue-color;
+  color: variables.$white-color;
+
+  &:hover {
+    background-color: darken($color: variables.$blue-color, $amount: 10%);
+  }
+
+  &:active {
+    background-color: lighten($color: variables.$blue-color, $amount: 10%);
+  }
+
+  &.disabled {
+    background-color: variables.$gray-color;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &.small {
+    width: variables.$button-small-width;
+    height: variables.$button-small-height;
+  }
+
+  &--outline {
+    background-color: white;
+    color: variables.$black-color;
+    border: 2px solid variables.$blue-color;
+    transition:
+      background-color variables.$button-transition,
+      color variables.$button-transition,
+      border variables.$button-transition;
 
     &:hover {
-        background-color: darken($color: variables.$blue-color, $amount: 10%);
+      background-color: variables.$blue-color;
+      color: variables.$white-color;
+      border-color: variables.$blue-color;
     }
 
     &:active {
-        background-color: lighten($color: variables.$blue-color, $amount: 10%);
+      background-color: lighten($color: variables.$blue-color, $amount: 10%);
+      color: variables.$white-color;
+      border-color: lighten($color: variables.$blue-color, $amount: 10%);
     }
-
-    &.disabled {
-        background-color: variables.$gray-color;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    &--outline {
-        background-color: white;
-        color: variables.$black-color;
-        border: 2px solid variables.$blue-color;
-        transition: background $button-transition, color $button-transition, border variables.$button-transition;
-        
-        &:hover {
-            background-color: variables.$blue-color;
-            color: variables.$white-color;
-            border: none;
-        }
-
-        &:active {
-            background-color: lighten($color: variables.$blue-color, $amount: 10%);
-            color: variables.$white-color;
-            border: none;
-        }
-    }
+  }
 }
 
 .button--red {
-    @include mixins.button-base;
-    background-color: variables.$red-color;
-    color: variables.$white-color;
+  @include mixins.button-base;
+  background-color: variables.$red-color;
+  color: variables.$white-color;
+
+  &:hover {
+    background-color: darken($color: variables.$red-color, $amount: 10%);
+  }
+
+  &:active {
+    background-color: lighten($color: variables.$red-color, $amount: 10%);
+  }
+
+  &--outline {
+    background-color: white;
+    color: variables.$black-color;
+    border: 2px solid variables.$red-color;
+    transition:
+      background-color variables.$button-transition,
+      color variables.$button-transition,
+      border variables.$button-transition;
 
     &:hover {
-        background-color: darken($color: variables.$red-color, $amount: 10%);
+      background-color: variables.$red-color;
+      color: variables.$white-color;
+      border-color: variables.$red-color;
     }
 
     &:active {
-        background-color: lighten($color: variables.$red-color, $amount: 10%);
+      background-color: lighten($color: variables.$red-color, $amount: 10%);
+      color: variables.$white-color;
+      border-color: lighten($color: variables.$red-color, $amount: 10%);
     }
-
-    &--outline {
-        background-color: white;
-        color: variables.$black-color;
-        border: 2px solid variables.$red-color;
-        transition: background $button-transition, color $button-transition, border variables.$button-transition;
-
-        &:hover {
-            background-color: variables.$red-color;
-            color: variables.$white-color;
-            border: none;
-        }
-
-        &:active {
-            background-color: lighten($color: variables.$red-color, $amount: 10%);
-            color: variables.$white-color;
-            border: none;
-        }
-    }
+  }
 }
 
 .button--yellow {
-    @include mixins.button-base;
-    background-color: variables.$yellow-color;
+  @include mixins.button-base;
+  background-color: variables.$yellow-color;
+  color: variables.$black-color;
+
+  &:hover {
+    background-color: darken($color: variables.$yellow-color, $amount: 10%);
+  }
+
+  &:active {
+    background-color: lighten($color: variables.$yellow-color, $amount: 10%);
+  }
+
+  &--outline {
+    background-color: white;
     color: variables.$black-color;
+    border: 2px solid variables.$yellow-color;
+    transition:
+      background-color variables.$button-transition,
+      color variables.$button-transition,
+      border variables.$button-transition;
 
     &:hover {
-        background-color: darken($color: variables.$yellow-color, $amount: 10%);
+      background-color: variables.$yellow-color;
+      color: variables.$black-color;
+      border-color: variables.$yellow-color;
     }
 
     &:active {
-        background-color: lighten($color: variables.$yellow-color, $amount: 10%);
+      background-color: lighten($color: variables.$yellow-color, $amount: 10%);
+      color: variables.$black-color;
+      border-color: lighten($color: variables.$yellow-color, $amount: 10%);
     }
+  }
+}
 
-    &--outline {
-        background-color: white;
-        color: variables.$black-color;
-        border: 2px solid variables.$yellow-color;
-        transition: background $button-transition, color $button-transition, border variables.$button-transition;
-
-        &:hover {
-            background-color: variables.$yellow-color;
-            color: variables.$black-color;
-            border: none;
-        }
-
-        &:active {
-            background-color: lighten($color: variables.$yellow-color, $amount: 10%);
-            color: variables.$black-color;
-            border: none;
-        }
-    }
+.button-text {
+  @include mixins.span-base;
+  color: variables.$white-color;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

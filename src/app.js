@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000 // .env에서 설정한 포트 또는 3000
 const path = require("path");
 
 app.get('/', (req, res) => { //express 앱(app)을 넣고, root directory에 오면, 
-  res.send('Hello World!') //"Hello World!" 를 출력되게 해준다.
+  res.sendFile(path.join(__dirname, "../public/index.html")) // index.html 파일을 응답으로 보낸다.
 })
 
 app.use(express.static(path.join(__dirname, "../public")));

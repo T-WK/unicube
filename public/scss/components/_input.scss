@@ -1,0 +1,25 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.input {
+  @include mixins.input-base;
+  color: variables.$black-color;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: variables.$blue-color;
+    box-shadow: variables.$input-box-shadow;
+    outline: none;
+  }
+
+  &.error {
+    border-color: variables.$input-error-border-color;
+    box-shadow: variables.$input-box-shadow;
+  }
+
+  &.disabled {
+    color: variables.$gray-color;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,6 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.span {
+  @include mixins.span-base;
+}

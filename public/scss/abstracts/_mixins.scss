@@ -1,62 +1,70 @@
-@use './variables' as va;
+@use "./variables" as va;
 
 /*
 * 폰트
 */
-@mixin font-face($name, $path, $weight: null, $format: null) {
-    @font-face {
-        font-family: $name;
-        font-weight: $weight;
-        src: url($path) format(quote($format));
-    }
+@mixin font-face($name, $file, $weight: null, $format: null) {
+  $file-path: va.$font-path + $file;
+  @font-face {
+    font-family: $name;
+    font-weight: $weight;
+    src: url($file-path) format(quote($format));
+  }
 }
-// @include font-face('Pretendard', '../../fonts/Pretendard-Thin.woff2', 100, 'woff2'); 로 사용
-
+// @include font-face('Pretendard', 'Pretendard-Thin.woff2', 100, 'woff2'); 로 사용
 
 /*
 * 버튼
 */
 @mixin button-base {
-    @include font-face('SUITE', '../../fonts/SUITE-Bold.woff2', 600, 'woff2');
-    font-family: 'SUITE', sans-serif;
-    color: va.$black-color;
-    padding: va.$button-padding;
-    border-radius: va.$button-radius;
-    text-align: center;
-    cursor: pointer;
-    transition: background va.$button-transition, color va.$button-transition;
+  @include font-face("SUITE", "SUITE-Bold.woff2", 600, "woff2");
+  font-family: "SUITE", sans-serif;
+  width: va.$button-widht;
+  height: va.$button-height;
+  max-width: va.$max-width;
+  max-height: va.$max-height;
+  color: va.$black-color;
+  padding: va.$button-padding;
+  border-radius: va.$button-radius;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color va.$button-transition,
+    color va.$button-transition;
 }
 
 /*
 * 입력란
 */
 @mixin input-base {
-    @include font-face('SUITE', '../../fonts/SUITE-Regular.woff2', 400, 'woff2');
-    font-family: 'SUITE', sans-serif;
-    padding: va.$input-padding;
-    border-radius: va.$input-radius;
-    border: va.$input-border;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border va.$input-transition, box-shadow va.$input-transition;
+  @include font-face("SUITE", "SUITE-Regular.woff2", 400, "woff2");
+  font-family: "SUITE", sans-serif;
+  background-color: white;
+  padding: va.$input-padding;
+  border-radius: va.$input-radius;
+  border: va.$input-border;
+  width: va.$input-widht;
+  height: va.$input-height;
+  max-width: va.$max-width;
+  max-height: va.$max-height;
+  box-sizing: border-box;
+  transition:
+    border va.$input-transition,
+    box-shadow va.$input-transition;
 
-    &:focus {
-        border-color: va.$blue-color;
-        box-shadow: va.$input-box-shadow;
-        outline: none;
-    }
+  &::placeholder {
+    color: va.$gray-color;
+  }
+}
 
-    &.error {
-        border-color: va.$input-error-border-color;
-        box-shadow: va.$input-box-shadow;
-    }
-
-    &.disabled {
-        background-color: va.$gray-color;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-    &::placeholder {
-        color: va.$gray-color;
-    }
+/*
+* 입력란
+*/
+@mixin span-base {
+  @include font-face("SUITE", "SUITE-Regular.woff2", 400, "woff2");
+  font-family: "SUITE", sans-serif;
+  color: va.$black-color;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
