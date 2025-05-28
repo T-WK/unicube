@@ -1,15 +1,17 @@
 require("dotenv").config();
 const express = require('express')
-const app = express() //가져온 express 모듈의 function을 이용해서 새로운 express 앱을 만든다.
-const port = process.env.PORT || 3000 // .env에서 설정한 포트 또는 3000(기본) 포트
-const path = require("path");
+const apiRoutes = require("./api");
+const pageRoutes = require("./routes/pages");
+const path = require("path"); 
 
-app.get('/', (req, res) => { //express 앱(app)을 넣고, root directory에 오면, 
-  res.sendFile(path.join(__dirname, "../public/index.html")) // index.html 파일을 응답으로 보낸다.
-})
+const app = express() //가져온 express 모듈의 function을 이용해서 새로운 express 앱을 만든다.
+const port = process.env.PORT || 5000 // .env에서 설정한 포트 또는 3000(기본) 포트
+const path = require("path");
 
 app.use(express.static(path.join(__dirname, "../public")));
 
+app.use('/api', apiRoutes);
+app.use('/', pageRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
