@@ -9,17 +9,36 @@ async function updateInvoice(invoiceData, invoiceImgData, productImgData) {
 }
 
 async function getInvoiceById(id) {
-  const [rows] = await pool.query(`SELECT * FROM invoices WHERE id = ?`, [id]);
-  return rows[0];
-}
+  let conn;
+  try {
+    conn = await pool.getConnection();
 
-async function getInvoiceByIds(ids) {
-  const placeholders = ids.map(() => "?").join(",");
-  const [rows] = await pool.query(
-    `SELECT * FROM invoices WHERE id IN (${placeholders})`,
-    ids,
-  );
-  return rows;
+    // 송장 데이터와 관련된 이미지 가져오기
+    const [rows] = await conn.execute(
+      `
+        SELECT 
+          i.id,
+          i.customer_name AS customerName,
+          i.phone_number AS phoneNumber,
+          i.return_invoice_number AS returnInvoiceNumber,
+          i.product_name AS productName,
+          i.product_availability AS productAvailability,
+          i.remarks,
+          i.created_at AS createdAt,
+          ii.image_type AS imageType,
+          ii.image_data AS imageData
+        FROM invoices i
+        LEFT JOIN invoice_images ii ON i.id = ii.invoice_id
+        WHERE i.id = ?
+      `,
+      [id],
+    );
+    return rows;
+  } catch (err) {
+    console.error("단건 조회 오류:", err);
+  } finally {
+    if (conn) conn.release();
+  }
 }
 
 async function getInvoiceByQuery(dateFrom, dateTo, keyword, avail) {
@@ -142,4 +161,10 @@ async function upsertInvoice(invoiceData, invoiceImgData, productImgData) {
   }
 }
 
-module.exports = { insertInvoice, updateInvoice, getInvoiceByQuery };
+module.exports = {
+  insertInvoice,
+  updateInvoice,
+  getInvoiceByQuery,
+  getInvoiceById,
+  getInvoiceByIds,
+};
