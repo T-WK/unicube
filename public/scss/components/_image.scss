@@ -1,0 +1,5 @@
+@use "../abstracts/mixins" as mixin;
+
+.image {
+    @include mixin.image-base;
+}

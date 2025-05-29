@@ -1,0 +1,20 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables" as va;
+
+.label {
+  @include mixins.label-base;
+}
+
+.label-div {
+  border-radius: va.$border-radius;
+  width: auto;
+  height: auto;
+  padding: 0.25rem 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: va.$yellow-color;
+}

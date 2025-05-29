@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/*
+* 폰트
+*/
+/*
+* 버튼
+*/
+/*
+* 입력란
+*/
+/*
+* span
+*/
+/*
+* label
+*/
+/*
+* 이미지
+*/
+.label {
+  font-family: "SUITE", sans-serif;
+  font-weight: 800;
+  color: #292e1e;
+  margin: auto;
+  font-size: 1rem;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 800;
+  src: url("/fonts/SUITE-ExtraBold.woff2") format("woff2");
+}
+
+.label-div {
+  border-radius: 22px;
+  width: auto;
+  height: auto;
+  padding: 0.25rem 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9dc5c;
+}/*# sourceMappingURL=label.css.map */

@@ -1,0 +1,42 @@
+@use "../../atoms/Label/label" as label;
+@use "../../atoms/Input/input" as input;
+@use "../../../scss/abstracts/variables" as va;
+
+$ratio: 7/1;
+
+.labeled-input {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  border: va.$border;
+  border-radius: va.$border-radius;
+
+  width: va.$big-width;
+  aspect-ratio: $ratio;
+  max-width: va.$big-max-width;
+  min-width: va.$big-min-width;
+
+  transition: border-color va.$transition border-width va.$transition box-shadow
+    va.$transition;
+
+  &:focus-within {
+    border-color: va.$input-focus-border-color;
+    box-shadow: va.$input-box-shadow;
+    border-width: 2px;
+  }
+
+  &.error {
+    border-color: va.$input-error-border-color;
+    box-shadow: va.$input-box-shadow;
+  }
+
+  &.disabled {
+    border-color: va.$gray-color;
+    pointer-events: none;
+  }
+}
+
+.labeled-input .input {
+  border-radius: va.$border-radius;
+}

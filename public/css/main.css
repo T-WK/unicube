@@ -9,22 +9,24 @@
 * 입력란
 */
 /*
-* 입력란
+* span
+*/
+/*
+* label
+*/
+/*
+* 이미지
 */
 .input {
   font-family: "SUITE", sans-serif;
+  font-weight: 400;
   background-color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #292e1e;
-  width: 75%;
-  height: 3.5rem;
-  max-width: 1200px;
-  max-height: 800px;
-  box-sizing: border-box;
-  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: none;
+  outline: none;
+  width: 85%;
+  height: 80%;
   color: #292e1e;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 @font-face {
   font-family: "SUITE";
@@ -37,15 +39,6 @@
 .input::placeholder {
   color: #948b89;
 }
-.input:focus {
-  border-color: #3423a6;
-  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
-  outline: none;
-}
-.input.error {
-  border-color: #f97068;
-  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
-}
 .input.disabled {
   color: #948b89;
   cursor: not-allowed;
@@ -54,14 +47,14 @@
 
 .button {
   font-family: "SUITE", sans-serif;
+  text-align: center;
   width: 75%;
-  height: 6rem;
-  max-width: 1200px;
-  max-height: 800px;
+  aspect-ratio: 5;
+  max-width: 800px;
+  min-width: 250px;
   color: #292e1e;
   padding: 0.5rem 1.5rem;
   border-radius: 22px;
-  text-align: center;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   background-color: #3423a6;
@@ -85,109 +78,28 @@
 }
 .button.small {
   width: 30%;
-  height: 4rem;
+  max-width: 400px;
+  min-width: 150px;
 }
-.button--outline {
-  background-color: white;
-  color: #292e1e;
-  border: 2px solid #3423a6;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
-}
-.button--outline:hover {
-  background-color: #3423a6;
-  color: #fafffd;
-  border-color: #3423a6;
-}
-.button--outline:active {
-  background-color: #412cd0;
-  color: #fafffd;
-  border-color: #412cd0;
-}
-
-.button--red {
-  font-family: "SUITE", sans-serif;
-  width: 75%;
-  height: 6rem;
-  max-width: 1200px;
-  max-height: 800px;
-  color: #292e1e;
-  padding: 0.5rem 1.5rem;
-  border-radius: 22px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+.button.--red {
   background-color: #f97068;
   color: #fafffd;
 }
-@font-face {
-  font-family: "SUITE";
-  font-weight: 600;
-  src: url("/fonts/SUITE-Bold.woff2") format("woff2");
-}
-.button--red:hover {
+.button.--red:hover {
   background-color: #f74237;
 }
-.button--red:active {
+.button.--red:active {
   background-color: #fb9e99;
 }
-.button--red--outline {
-  background-color: white;
-  color: #292e1e;
-  border: 2px solid #f97068;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
-}
-.button--red--outline:hover {
-  background-color: #f97068;
-  color: #fafffd;
-  border-color: #f97068;
-}
-.button--red--outline:active {
-  background-color: #fb9e99;
-  color: #fafffd;
-  border-color: #fb9e99;
-}
-
-.button--yellow {
-  font-family: "SUITE", sans-serif;
-  width: 75%;
-  height: 6rem;
-  max-width: 1200px;
-  max-height: 800px;
-  color: #292e1e;
-  padding: 0.5rem 1.5rem;
-  border-radius: 22px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+.button.--yellow {
   background-color: #f9dc5c;
   color: #292e1e;
 }
-@font-face {
-  font-family: "SUITE";
-  font-weight: 600;
-  src: url("/fonts/SUITE-Bold.woff2") format("woff2");
-}
-.button--yellow:hover {
+.button.--yellow:hover {
   background-color: #f7d12b;
 }
-.button--yellow:active {
+.button.--yellow:active {
   background-color: #fbe78d;
-}
-.button--yellow--outline {
-  background-color: white;
-  color: #292e1e;
-  border: 2px solid #f9dc5c;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
-}
-.button--yellow--outline:hover {
-  background-color: #f9dc5c;
-  color: #292e1e;
-  border-color: #f9dc5c;
-}
-.button--yellow--outline:active {
-  background-color: #fbe78d;
-  color: #292e1e;
-  border-color: #fbe78d;
 }
 
 .button-text {

@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/*
+* 폰트
+*/
+/*
+* 버튼
+*/
+/*
+* 입력란
+*/
+/*
+* span
+*/
+/*
+* label
+*/
+/*
+* 이미지
+*/
+.label {
+  font-family: "SUITE", sans-serif;
+  font-weight: 800;
+  color: #292e1e;
+  margin: auto;
+  font-size: 1rem;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 800;
+  src: url("/fonts/SUITE-ExtraBold.woff2") format("woff2");
+}
+
+.label-div {
+  border-radius: 22px;
+  width: auto;
+  height: auto;
+  padding: 0.25rem 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9dc5c;
+}
+
+.input {
+  font-family: "SUITE", sans-serif;
+  font-weight: 400;
+  background-color: white;
+  border: none;
+  outline: none;
+  width: 85%;
+  height: 80%;
+  color: #292e1e;
+  font-size: 1.5rem;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 400;
+  src: url("/fonts/SUITE-Regular.woff2") format("woff2");
+}
+.input::-moz-placeholder {
+  color: #948b89;
+}
+.input::placeholder {
+  color: #948b89;
+}
+.input.disabled {
+  color: #948b89;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.labeled-input {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border: 2px solid #948b89;
+  border-radius: 22px;
+  width: 75%;
+  aspect-ratio: 7;
+  max-width: 800px;
+  min-width: 250px;
+  transition: border-color 0.2s ease-in-out border-width 0.2s ease-in-out box-shadow 0.2s ease-in-out;
+}
+.labeled-input:focus-within {
+  border-color: #3423a6;
+  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
+  border-width: 2px;
+}
+.labeled-input.error {
+  border-color: #f97068;
+  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
+}
+.labeled-input.disabled {
+  border-color: #948b89;
+  pointer-events: none;
+}
+
+.labeled-input .input {
+  border-radius: 22px;
+}/*# sourceMappingURL=labeled-input.css.map */

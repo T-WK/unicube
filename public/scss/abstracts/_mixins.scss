@@ -17,20 +17,27 @@
 * 버튼
 */
 @mixin button-base {
+  $ratio: 5/1;
+
   @include font-face("SUITE", "SUITE-Bold.woff2", 600, "woff2");
   font-family: "SUITE", sans-serif;
+  text-align: center;
+
   width: va.$button-widht;
-  height: va.$button-height;
-  max-width: va.$max-width;
-  max-height: va.$max-height;
+  aspect-ratio: $ratio;
+
+  max-width: va.$big-max-width;
+  min-width: va.$big-min-width;
+
   color: va.$black-color;
   padding: va.$button-padding;
-  border-radius: va.$button-radius;
-  text-align: center;
+
+  border-radius: va.$border-radius;
+
   cursor: pointer;
   transition:
-    background-color va.$button-transition,
-    color va.$button-transition;
+    background-color va.$transition,
+    color va.$transition;
 }
 
 /*
@@ -39,18 +46,12 @@
 @mixin input-base {
   @include font-face("SUITE", "SUITE-Regular.woff2", 400, "woff2");
   font-family: "SUITE", sans-serif;
+  font-weight: 400;
   background-color: white;
-  padding: va.$input-padding;
-  border-radius: va.$input-radius;
-  border: va.$input-border;
-  width: va.$input-widht;
-  height: va.$input-height;
-  max-width: va.$max-width;
-  max-height: va.$max-height;
-  box-sizing: border-box;
-  transition:
-    border va.$input-transition,
-    box-shadow va.$input-transition;
+  border: none;
+  outline: none;
+  width: 85%;
+  height: 80%;
 
   &::placeholder {
     color: va.$gray-color;
@@ -58,7 +59,7 @@
 }
 
 /*
-* 입력란
+* span
 */
 @mixin span-base {
   @include font-face("SUITE", "SUITE-Regular.woff2", 400, "woff2");
@@ -67,4 +68,27 @@
   line-height: 1.5;
   margin: 0;
   padding: 0;
+}
+
+/*
+* label
+*/
+@mixin label-base {
+  @include font-face("SUITE", "SUITE-ExtraBold.woff2", 800, "woff2");
+  font-family: "SUITE", sans-serif;
+  font-weight: 800;
+  color: va.$black-color;
+  margin: auto;
+  font-size: 1rem;
+}
+
+/*
+* 이미지
+*/
+@mixin image-base {
+  width: 90%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: va.$border-radius;
+  background-color: white;
 }

@@ -1,0 +1,40 @@
+@use "../../atoms/Label/label" as label;
+@use "../../atoms/Image/image" as image;
+@use "../../../scss/abstracts/variables" as va;
+
+$ratio: 1;
+
+.labeled-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  border: va.$border;
+  border-radius: va.$border-radius;
+
+  width: va.$image-width;
+  max-width: va.$image-max-width;
+  min-width: va.$image-min-width;
+  aspect-ratio: $ratio;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.error {
+    border-color: va.$red-color;
+  }
+}
+
+.labeled-image .image {
+  position: relative;
+}
+
+.labeled-image .label-div {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}

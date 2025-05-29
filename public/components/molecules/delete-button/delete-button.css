@@ -1,0 +1,37 @@
+.delete-button-container {
+  width: 20%;
+  aspect-ratio: 1;
+  position: absolute;
+  left: 85%;
+  top: -5%;
+  border-radius: 50%;
+  transition: border-color 0.2s ease-in-out box-shadow 0.2s ease-in-out;
+}
+.delete-button-container.focused {
+  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
+  border-color: #3423a6;
+}
+
+.delete-button-container button {
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/cross.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: contain;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.delete-button-container button.disabled {
+  cursor: not-allowed;
+}
+.delete-button-container button:active {
+  background-color: #1a1a1a;
+}/*# sourceMappingURL=delete-button.css.map */

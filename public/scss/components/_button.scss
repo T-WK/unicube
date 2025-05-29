@@ -21,101 +21,34 @@
   }
 
   &.small {
-    width: variables.$button-small-width;
-    height: variables.$button-small-height;
+    width: variables.$small-width;
+    max-width: variables.$small-max-width;
+    min-width: variables.$small-min-width;
   }
 
-  &--outline {
-    background-color: white;
-    color: variables.$black-color;
-    border: 2px solid variables.$blue-color;
-    transition:
-      background-color variables.$button-transition,
-      color variables.$button-transition,
-      border variables.$button-transition;
+  &.--red {
+    background-color: variables.$red-color;
+    color: variables.$white-color;
 
     &:hover {
-      background-color: variables.$blue-color;
-      color: variables.$white-color;
-      border-color: variables.$blue-color;
-    }
-
-    &:active {
-      background-color: lighten($color: variables.$blue-color, $amount: 10%);
-      color: variables.$white-color;
-      border-color: lighten($color: variables.$blue-color, $amount: 10%);
-    }
-  }
-}
-
-.button--red {
-  @include mixins.button-base;
-  background-color: variables.$red-color;
-  color: variables.$white-color;
-
-  &:hover {
-    background-color: darken($color: variables.$red-color, $amount: 10%);
-  }
-
-  &:active {
-    background-color: lighten($color: variables.$red-color, $amount: 10%);
-  }
-
-  &--outline {
-    background-color: white;
-    color: variables.$black-color;
-    border: 2px solid variables.$red-color;
-    transition:
-      background-color variables.$button-transition,
-      color variables.$button-transition,
-      border variables.$button-transition;
-
-    &:hover {
-      background-color: variables.$red-color;
-      color: variables.$white-color;
-      border-color: variables.$red-color;
+      background-color: darken($color: variables.$red-color, $amount: 10%);
     }
 
     &:active {
       background-color: lighten($color: variables.$red-color, $amount: 10%);
-      color: variables.$white-color;
-      border-color: lighten($color: variables.$red-color, $amount: 10%);
     }
   }
-}
 
-.button--yellow {
-  @include mixins.button-base;
-  background-color: variables.$yellow-color;
-  color: variables.$black-color;
-
-  &:hover {
-    background-color: darken($color: variables.$yellow-color, $amount: 10%);
-  }
-
-  &:active {
-    background-color: lighten($color: variables.$yellow-color, $amount: 10%);
-  }
-
-  &--outline {
-    background-color: white;
+  &.--yellow {
+    background-color: variables.$yellow-color;
     color: variables.$black-color;
-    border: 2px solid variables.$yellow-color;
-    transition:
-      background-color variables.$button-transition,
-      color variables.$button-transition,
-      border variables.$button-transition;
 
     &:hover {
-      background-color: variables.$yellow-color;
-      color: variables.$black-color;
-      border-color: variables.$yellow-color;
+      background-color: darken($color: variables.$yellow-color, $amount: 10%);
     }
 
     &:active {
       background-color: lighten($color: variables.$yellow-color, $amount: 10%);
-      color: variables.$black-color;
-      border-color: lighten($color: variables.$yellow-color, $amount: 10%);
     }
   }
 }
