@@ -84,12 +84,12 @@
 }
 .labeled-input:focus-within {
   border-color: #3423a6;
-  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
+  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
   border-width: 2px;
 }
 .labeled-input.error {
   border-color: #f97068;
-  box-shadow: 0 0 5px rgba(249, 112, 104, 0.5);
+  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
 }
 .labeled-input.disabled {
   border-color: #948b89;

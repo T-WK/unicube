@@ -13,7 +13,7 @@
   transition: border-color va.$transition box-shadow va.$transition;
 
   &.focused {
-    box-shadow: va.$input-box-shadow;
+    box-shadow: va.$box-shadow;
     border-color: va.$blue-color;
   }
 }

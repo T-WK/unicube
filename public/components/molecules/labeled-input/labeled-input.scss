@@ -22,13 +22,13 @@ $ratio: 7/1;
 
   &:focus-within {
     border-color: va.$input-focus-border-color;
-    box-shadow: va.$input-box-shadow;
+    box-shadow: va.$box-shadow;
     border-width: 2px;
   }
 
   &.error {
     border-color: va.$input-error-border-color;
-    box-shadow: va.$input-box-shadow;
+    box-shadow: va.$box-shadow;
   }
 
   &.disabled {

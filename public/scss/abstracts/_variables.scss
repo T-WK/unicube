@@ -20,6 +20,8 @@ $border-radius: 22px;
 
 $transition: 0.2s ease-in-out;
 
+$box-shadow: 0 0 5px rgba($black-color, 0.5);
+
 // 폰트 경로
 $font-path: "/fonts/";
 
@@ -40,8 +42,6 @@ $input-height: 20vw;
 $input-max-height: 200px;
 $input-small-width: 30%;
 $input-small-height: 2.5rem;
-
-$input-box-shadow: 0 0 5px rgba($red-color, 0.5);
 
 // 이미지
 $image-width: 50vw;

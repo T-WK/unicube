@@ -12,9 +12,18 @@
       referrerpolicy="no-referrer"></script>
     <script src="/components/atoms/Input/input.js"></script>
     <script src="/components/atoms/Button/button.js"></script>
-    <script src="/components/molecules/labeled-input/labeled-input.js" defer></script>
-     <script src="/components/molecules/labeled-image/labeled-image.js" defer></script>
-     <script src="/components/molecules/delete-button/delete-button.js" defer></script>
+    <script
+      src="/components/molecules/labeled-input/labeled-input.js"
+      defer></script>
+    <script
+      src="/components/molecules/labeled-image/labeled-image.js"
+      defer></script>
+    <script
+      src="/components/molecules/delete-button/delete-button.js"
+      defer></script>
+    <script
+      src="/components/molecules/dropdown/dropdown.js"
+      defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -24,6 +33,7 @@
     <div id="input-container"></div>
     <div id="labeled-input-container"></div>
     <div id="labeled-image-container"></div>
+    <div id="dropdown-container"></div>
     <script>
       $(function () {
         $("#btn-container").load("/components/atoms/Button/button.html");
@@ -33,6 +43,9 @@
         );
         $("#labeled-image-container").load(
           "/components/molecules/labeled-image/labeled-image.html",
+        );
+        $("#dropdown-container").load(
+          "/components/molecules/dropdown/dropdown.html",
         );
       });
     </script>
