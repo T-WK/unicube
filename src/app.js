@@ -7,6 +7,9 @@ const path = require("path");
 const app = express(); //가져온 express 모듈의 function을 이용해서 새로운 express 앱을 만든다.
 const port = process.env.PORT || 3000; // .env에서 설정한 포트 또는 3000(기본) 포트
 
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.use("/api", apiRoutes);

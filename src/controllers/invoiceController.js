@@ -16,10 +16,25 @@ exports.getInvoiceById = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
-exports.createInvoice = async (req, res) => {
-  const { invoiceData, products } = req.body;
+exports.getInvoiceByQuery = async (req, res) => {
+  const { dateFrom, dateTo, keyword, avail } = req.query;
   try {
-    const id = await invoiceModel.insertInvoice(invoiceData, products);
+    const rows = await invoiceModel.findInvoiceByQuery(
+      dateFrom,
+      dateTo,
+      keyword,
+      avail,
+    );
+    const invoiceList = formatInvoiceRows(rows);
+    res.status(200).json({ success: true, invoiceList });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.createInvoice = async (req, res) => {
+  const { invoiceData, invoiceProduct } = req.body;
+  try {
+    const id = await invoiceModel.insertInvoice(invoiceData, invoiceProduct);
     res.status(201).json({ success: true, id });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -27,9 +42,9 @@ exports.createInvoice = async (req, res) => {
 };
 
 exports.updateInvoice = async (req, res) => {
-  const { invoiceData, products } = req.body;
+  const { invoiceData, invoiceProduct } = req.body;
   try {
-    const id = await invoiceModel.updateInvoice(invoiceData, products);
+    const id = await invoiceModel.updateInvoice(invoiceData, invoiceProduct);
 
     res.status(200).json({ success: true, id });
   } catch (err) {
@@ -77,22 +92,6 @@ exports.exportInvoice = async (req, res) => {
       .send(buffer);
   } catch (err) {
     console.error("Export error:", err);
-    res.status(500).json({ success: false, error: err.message });
-  }
-};
-
-exports.getInvoiceByQuery = async (req, res) => {
-  const { dateFrom, dateTo, keyword, avail } = req.query;
-  try {
-    const rows = await invoiceModel.findInvoiceByQuery(
-      dateFrom,
-      dateTo,
-      keyword,
-      avail,
-    );
-    const invoiceList = formatInvoiceRows(rows);
-    res.status(200).json({ success: true, invoiceList });
-  } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
 };
