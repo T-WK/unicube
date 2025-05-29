@@ -22,14 +22,14 @@ async function insertInvoice(invoiceData, invoiceProductData) {
     const [result] = await conn.execute(
       `INSERT INTO invoice
         (company_id, name, phone, number, invoice_image, product_image,created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())`,
+        VALUES (?, ?, ?, ?, ?, ?, NOW())`,
       [
         invoiceData.company_id,
         invoiceData.name,
         invoiceData.phone,
         invoiceData.number,
-        invoiceData.invoice_image,
-        invoiceData.product_image,
+        invoiceData.invoice_image ?? null,
+        invoiceData.product_image ?? null,
       ],
     );
     const invoiceId = result.insertId;
@@ -40,7 +40,7 @@ async function insertInvoice(invoiceData, invoiceProductData) {
         ip.product_id,
         ip.returned_quantity,
         ip.resalable_quantity,
-        ip.note,
+        ip.note ?? null,
       ]);
 
       // (?, ?, ?, ?, ?), (?, ?, ?, ?, ?) ...
@@ -99,8 +99,8 @@ async function updateInvoice(invoiceData, invoiceProductData) {
         invoiceData.name,
         invoiceData.phone,
         invoiceData.number,
-        invoiceData.invoice_image,
-        invoiceData.product_image,
+        invoiceData.invoice_image ?? null,
+        invoiceData.product_image ?? null,
         invoiceData.id,
       ],
     );
@@ -115,7 +115,7 @@ async function updateInvoice(invoiceData, invoiceProductData) {
         ip.product_id,
         ip.returned_quantity,
         ip.resalable_quantity,
-        ip.note,
+        ip.note ?? null,
       ]);
 
       // (?, ?, ?, ?, ?), (?, ?, ?, ?, ?) ...
@@ -199,9 +199,11 @@ async function findInvoiceByQuery(dateFrom, dateTo, keyword, avail) {
       params.push(`%${keyword}%`, `%${keyword}%`);
     }
     if (avail) {
-      where.push("ip.releasable_quantity = ?");
+      where.push("ip.resalable_quantity = ?");
       params.push(avail);
     }
+    where.push("i.deleted_at IS NULL");
+
     const whereSQL = where.length ? "WHERE " + where.join(" AND ") : "";
 
     const [rows] = await conn.execute(
@@ -211,8 +213,6 @@ async function findInvoiceByQuery(dateFrom, dateTo, keyword, avail) {
           i.name,
           i.phone,
           i.number,
-          i.invoice_image,
-          i.product_image,
           i.created_at,
           i.updated_at,
           i.deleted_at,
