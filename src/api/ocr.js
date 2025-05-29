@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { callMyOcrApi } = require("../lib/naverOcr");
 const { extractInvoiceData } = require("../lib/openai");
-const { mapToKoreanFields } = require("../utils");
+const { mapToKoreanFields } = require("../utils/mapper");
 /**
  * POST /api/ocr
  * 클라이언트에서 base64 이미지 받음 → OCR → ChatGPT → JSON 반환
