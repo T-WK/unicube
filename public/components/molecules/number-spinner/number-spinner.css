@@ -1,0 +1,95 @@
+@charset "UTF-8";
+/*
+* 폰트
+*/
+/*
+* 버튼
+*/
+/*
+* 입력란
+*/
+/*
+* span
+*/
+/*
+* label
+*/
+/*
+* 이미지
+*/
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 30%;
+  aspect-ratio: 3.5/1;
+  border: 3px solid #948b89;
+  border-radius: 22px;
+  transition: border-color 0.2s ease-in-out;
+}
+.spinner-container.error {
+  border-color: #f97068;
+}
+
+.spinner-button {
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: #f9dc5c;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease-in-out;
+}
+.spinner-button:hover {
+  background-color: #f7d12b;
+  cursor: pointer;
+}
+.spinner-button:active {
+  background-color: #fbe78d;
+}
+
+#spinner-decrement {
+  background-image: url("/images/minus.png");
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+#spinner-increment {
+  background-image: url("/images/plus.png");
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.spinner-input {
+  font-weight: 800;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: #292e1e;
+  background-color: white;
+  border-left: 1px solid #948b89;
+  border-right: 1px solid #948b89;
+  border-top: 0;
+  border-bottom: 0;
+  outline: none;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 800;
+  src: url("/fonts/SUITE-ExtraBold.woff2") format("woff2");
+}/*# sourceMappingURL=number-spinner.css.map */

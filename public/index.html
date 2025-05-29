@@ -24,16 +24,29 @@
     <script
       src="/components/molecules/dropdown/dropdown.js"
       defer></script>
+    <script
+      src="/components/molecules/number-spinner/number-spinner.js"
+      defer></script>
+
     <title>Document</title>
   </head>
   <body>
     hello world test
 
     <div id="btn-container"></div>
+    <br />
     <div id="input-container"></div>
+    <br />
     <div id="labeled-input-container"></div>
+    <br />
     <div id="labeled-image-container"></div>
+    <br />
     <div id="dropdown-container"></div>
+    <br />
+    <div id="dropdown-container2"></div>
+    <br />
+    <br />
+    <div id="number-spinner-container"></div>
     <script>
       $(function () {
         $("#btn-container").load("/components/atoms/Button/button.html");
@@ -47,7 +60,14 @@
         $("#dropdown-container").load(
           "/components/molecules/dropdown/dropdown.html",
         );
+        $("#dropdown-container2").load(
+          "/components/molecules/dropdown/dropdown.html",
+        );
+        $("#number-spinner-container").load(
+          "/components/molecules/number-spinner/number-spinner.html",
+        );
       });
     </script>
+    <script src="/jQuery/component-click-events.js"></script>
   </body>
 </html>

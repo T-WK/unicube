@@ -19,18 +19,13 @@
     outline-color: va.$blue-color;
     outline-width: 3px;
   }
-  &.--clicked {
+  &.active {
     outline-color: va.$blue-color;
     outline-width: 3px;
   }
 
   &.red {
     outline-color: va.$red-color;
-  }
-
-  &.disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
   }
 }
 
@@ -67,17 +62,23 @@
   width: 10%;
   aspect-ratio: 1;
 
+  background-color: transparent;
   position: absolute;
   right: 0;
 
-  background-image: url("/images/arrow-down.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
   &.hidden {
-    display: none;
+    display: none !important;
   }
+}
+#dropdown-down-img {
+  background-image: url("/images/arrow-down.png");
+}
+#dropdown-up-img {
+  background-image: url("/images/arrow-up.png");
 }
 
 ul {
@@ -98,18 +99,20 @@ ul li {
   max-height: 600px;
   overflow-y: auto;
 
-//   text-align: center;
-
   margin-top: 10px;
 
   background-color: va.$white-color;
 
   border-radius: va.$border-radius;
 
-  box-shadow: va.$box-shadow;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+
+  z-index: 1000;
 
   &.hidden {
-    visibility: hidden;
+    display: none;
   }
 }
 
@@ -117,7 +120,7 @@ ul li {
   padding: 0;
   width: 95%;
   aspect-ratio: 5 / 1;
-  margin: 0.5rem 0;
+  margin: 0.5rem auto;
 }
 
 .dropdown-label {
@@ -127,4 +130,14 @@ ul li {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-radius: va.$border-radius;
+}
+
+.dropdown-item .dropdown-label {
+  &:hover {
+    background-color: lighten($color: va.$blue-color, $amount: 20%);
+    color: va.$white-color;
+    cursor: pointer;
+  }
 }

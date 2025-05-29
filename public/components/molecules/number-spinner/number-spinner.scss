@@ -1,0 +1,87 @@
+@use "../../../scss/abstracts/variables" as va;
+@use "../../../scss/abstracts/mixins" as mixins;
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  width: va.$small-width;
+  aspect-ratio: 3.5 / 1;
+  border: va.$thick-border;
+  border-radius: va.$border-radius;
+
+  transition: border-color va.$transition;
+
+  &.error {
+    border-color: va.$red-color;
+  }
+}
+
+.spinner-button {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: va.$yellow-color;
+  border: none;
+  outline: none;
+
+  transition: background-color va.$transition;
+
+  &:hover {
+    background-color: darken($color: va.$yellow-color, $amount: 10%);
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: lighten($color: va.$yellow-color, $amount: 10%);
+  }
+}
+
+#spinner-decrement {
+  //   border-radius: va.$border-radius 0 0 va.$border-radius;
+
+  background-image: url("/images/minus.png");
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+#spinner-increment {
+  //   border-radius: 0 va.$border-radius va.$border-radius 0;
+
+  background-image: url("/images/plus.png");
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.spinner-input {
+  @include mixins.font-face("SUITE", "SUITE-ExtraBold.woff2", 800, "woff2");
+  font-weight: 800;
+
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: va.$black-color;
+  background-color: white;
+
+  border-left: va.$thin-border;
+  border-right: va.$thin-border;
+  border-top: 0;
+  border-bottom: 0;
+
+  outline: none;
+}
