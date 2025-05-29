@@ -139,7 +139,7 @@ async function updateInvoice(invoiceData, invoiceProductData) {
   }
 }
 
-async function findInvoiceById(id) {
+async function findInvoiceById(id, company_id) {
   let conn;
   try {
     conn = await pool.getConnection();
@@ -179,13 +179,23 @@ async function findInvoiceById(id) {
   }
 }
 
-async function findInvoiceByQuery(dateFrom, dateTo, keyword, avail) {
+async function findInvoiceByQuery(
+  company_id,
+  dateFrom,
+  dateTo,
+  keyword,
+  avail,
+) {
   let conn;
   try {
     conn = await pool.getConnection();
 
     const where = [],
       params = [];
+    if (company_id) {
+      where.push("i.company_id = ?");
+      params.push(company_id);
+    }
     if (dateFrom) {
       where.push("i.created_at >= ?");
       params.push(dateFrom + " 00:00:00");
