@@ -20,6 +20,7 @@ exports.getInvoiceByQuery = async (req, res) => {
   const { dateFrom, dateTo, keyword, avail } = req.query;
   try {
     const rows = await invoiceModel.findInvoiceByQuery(
+      req.company_id,
       dateFrom,
       dateTo,
       keyword,
