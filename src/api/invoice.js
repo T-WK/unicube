@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const invoiceController = require("../controllers/invoiceController");
-const { authorize, authMiddleware } = require("../utils/authorize");
+const { authorize } = require("../utils/authorize");
 
 router.get("/export", invoiceController.exportInvoice);
 router.get("/:id", invoiceController.getInvoiceById);
