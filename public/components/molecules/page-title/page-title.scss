@@ -1,0 +1,24 @@
+@use "../../../scss/abstracts/mixins" as mixins;
+@use "../../../scss/abstracts/variables" as va;
+
+.page-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 80%;
+  aspect-ratio: 3.5 / 1;
+
+  background-color: va.$blue-color;
+}
+
+.page-title {
+  @include mixins.font-face("SUITE", "SUITE-ExtraBold.woff2", 800, "woff2");
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: va.$white-color;
+  text-align: center;
+
+  width: 100%;
+  height: 100%;
+}

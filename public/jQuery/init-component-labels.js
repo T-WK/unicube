@@ -2,16 +2,16 @@ var labelMap = {
   "customer-name": "고객 이름",
   "customer-phone": "고객 전화",
   "invoice-number": "송장 번호",
-  "company-name" : "업체 이름",
-  
+  "company-name": "업체 이름",
+
   "invoice-photo": "송장 사진",
   "product-photo": "제품 사진",
 
   "placeholder-note": "메모",
   "placeholder-product-name": "상품 이름",
+  "placeholder-choice-product-name": "상품 이름을 선택하세요.",
   "placeholder-choice-company": "업체를 선택하세요.",
   "placeholder-company-name": "업체 이름",
-  
 
   "title-ocr": "OCR 결과",
   "title-products-list": "제품 목록",
@@ -31,20 +31,18 @@ var labelMap = {
   "delete-button": "삭제",
 };
 
-jQuery.initComponentLabels = function () {
-  // 페이지에 있는 모든 컴포넌트 인스턴스를 한 번에 찾아서
-  $(".component-container").each(function () {
-    var $comp = $(this);
-    var containerId = $comp.attr("id");
+jQuery.initComponentLabels = function (context) {
+  // context가 jQuery 객체면 그 안만, 아니면 document 전체를 스캔
+  var $root = context && context.jquery ? context : $(document);
 
-    // id에 따라 라벨 텍스트를 매핑
-    const labelText = labelMap[containerId];
-    if (!labelText) {
-      console.warn(`No label text found for container id: ${containerId}`);
-      labelText = "Label" // 라벨 텍스트가 없으면 다음 컴포넌트로 넘어감
-    }
+  $root
+    .find('[class~="component-container"]')
+    .addBack('[class~="component-container"]')
+    .each(function () {
+      var $comp = $(this);
+      var id = $comp.attr("id");
+      var labelText = labelMap[id] || "Label";
 
-    // 컴포넌트 내부의 .component-label 에 텍스트 설정
-    $comp.find('.component-label').text(labelText);
-  });
+      $comp.find('[class~="component-label"]').text(labelText);
+    });
 };

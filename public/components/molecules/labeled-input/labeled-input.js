@@ -8,12 +8,3 @@
     document.head.appendChild(link);
   }
 })();
-
-$(document).ready(function () {
-  $.get("/components/atoms/Label/label.html", function (html) {
-    var $tmp = $(html);
-    $tmp.text("Label");
-
-    $(".labeled-input").prepend($tmp);
-  });
-});
