@@ -76,10 +76,27 @@ async function deleteCompany(id) {
   }
 }
 
+async function getCompanyIdByAccessToken(accessToken) {
+  try {
+    const [rows] = await pool.execute(
+      `SELECT id
+       FROM company
+       WHERE access_token = ? AND deleted_at IS NULL`,
+      [accessToken],
+    );
+    if (rows.length === 0) return null;
+    return rows[0].id;
+  } catch (error) {
+    console.error("업체 번호 반환 오류:", error);
+    throw error;
+  }
+}
+
 module.exports = {
   insertCompany,
   findCompanyById,
   findAllCompanies,
   updateCompany,
   deleteCompany,
+  getCompanyIdByAccessToken,
 };
