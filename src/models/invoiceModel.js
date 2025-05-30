@@ -209,7 +209,7 @@ async function findInvoiceByQuery(
       params.push(`%${keyword}%`, `%${keyword}%`);
     }
     if (avail) {
-      where.push("ip.resalable_quantity = ?");
+      where.push("ip.resalable_quantity > 0");
       params.push(avail);
     }
     where.push("i.deleted_at IS NULL");

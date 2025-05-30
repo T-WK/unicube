@@ -13,10 +13,6 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 app.use(express.static(path.join(__dirname, "../public"), { index: false }));
 
-app.get("/", (req, res) => {
-  res.status(403).send("Forbidden");
-});
-
 app.use("/:hash", authMiddleware);
 app.use("/:hash/api", apiRoutes);
 app.use("/:hash", pageRoutes);

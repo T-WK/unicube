@@ -5,7 +5,9 @@ const invoiceController = require("../controllers/invoiceController");
 const { authorize } = require("../utils/authorize");
 
 router.get("/export", invoiceController.exportInvoice);
+
 router.get("/:id", invoiceController.getInvoiceById);
+
 router.get("/", invoiceController.getInvoiceByQuery);
 
 router.post("/", authorize(["admin"]), invoiceController.createInvoice);
