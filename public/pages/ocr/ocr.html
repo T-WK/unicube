@@ -11,53 +11,46 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
 
-    <script src="/components/atoms/Input/input.js"></script>
-    <script src="/components/atoms/Button/button.js"></script>
-    <script
-      src="/components/molecules/labeled-input/labeled-input.js"
-      defer></script>
-    <script
-      src="/components/molecules/labeled-image/labeled-image.js"
-      defer></script>
-    <script
-      src="/components/molecules/delete-button/delete-button.js"
-      defer></script>
-    <script
-      src="/components/molecules/dropdown/dropdown.js"
-      defer></script>
-    <script
-      src="/components/molecules/number-spinner/number-spinner.js"
-      defer></script>
+    <link
+      href="/css/main.css"
+      rel="stylesheet" />
+    <link
+      href="/pages/ocr/ocr.css"
+      rel="stylesheet" />
 
     <title>업체 정보 조회</title>
   </head>
   <body>
-    <div
+    <!-- 헤더 -->
+    <header
       class="header-container component-container"
-      data-component-url="/components/organisms/Header/header.html"></div>
+      data-component-url="/components/organisms/Header/header.html"></header>
     <br />
     <!-- title -->
     <div
       id="get-invoice-page-access-button"
-      class="get-invoice-title-container component-container"
+      class="get-invoice-title-container component-container flex-container margin-container"
       data-component-url="/components/molecules/page-title/page-title.html"></div>
     <br />
 
+    <!-- 카메라 버튼 -->
     <div
       id="invoice-photo"
-      class="invoice-photo-labeled-image-container component-container"
+      class="invoice-photo-labeled-image-container component-container flex-container margin-container"
       data-component-url="/components/molecules/labeled-image/labeled-image.html"></div>
     <br />
 
+    <!-- 데이터 추출 버튼 -->
     <div
       id="data-processing-page-access-button"
-      class="data-process-button-container component-container"
+      class="data-process-button-container component-container flex-container margin-container"
       data-component-url="/components/atoms/Button/button.html"></div>
     <br />
 
-    <div
+    <!-- 푸터 -->
+    <footer
       class="header-container component-container"
-      data-component-url="/components/organisms/Footer/footer.html"></div>
+      data-component-url="/components/organisms/Footer/footer.html"></footer>
 
     <script src="/jQuery/init-component-labels.js"></script>
     <script src="/jQuery/component-loader.js"></script>

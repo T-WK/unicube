@@ -9,22 +9,24 @@ router.get("/", (req, res) => {
 
 router.get("/invoice", (req, res) => {
   //express 앱(app)을 넣고, root directory에 오면,
-  res.sendFile(path.join(__dirname, "../../public/pages/save-invoice.html")); // index.html 파일을 응답으로 보낸다.
+  res.sendFile(
+    path.join(__dirname, "../../public/pages/save-invoice/save-invoice.html"),
+  ); // index.html 파일을 응답으로 보낸다.
 });
 
 router.get("/company", (req, res) => {
   //express 앱(app)을 넣고, root directory에 오면,
-  res.sendFile(path.join(__dirname, "../../public/pages/company.html")); // index.html 파일을 응답으로 보낸다.
+  res.sendFile(path.join(__dirname, "../../public/pages/company/company.html"));
 });
 
 router.get("/ocr", (req, res) => {
   //express 앱(app)을 넣고, root directory에 오면,
-  res.sendFile(path.join(__dirname, "../../public/pages/ocr.html")); // index.html 파일을 응답으로 보낸다.
+  res.sendFile(path.join(__dirname, "../../public/pages/ocr/ocr.html"));
 });
 
 router.get("/product", (req, res) => {
   //express 앱(app)을 넣고, root directory에 오면,
-  res.sendFile(path.join(__dirname, "../../public/pages/product.html"));
+  res.sendFile(path.join(__dirname, "../../public/pages/product/product.html"));
 });
 
 module.exports = router;

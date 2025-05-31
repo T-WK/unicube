@@ -1,0 +1,11 @@
+@use "../../../scss/abstracts/mixins" as mixins;
+
+.header-label {
+  @include mixins.span-base;
+  @include mixins.font-face("SUITE", "SUITE-SemiBold.woff2", 700, "woff2");
+  font-weight: 700;
+}
+
+.header-icon {
+    
+}
