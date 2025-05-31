@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script
+      src="/components/molecules/labeled-input/labeled-input.js"
+      defer></script>
+    <script
+      src="/components/molecules/page-title/page-title.js"
+      defer></script>
+    <script
+      src="/components/molecules/labeled-image/labeled-image.js"
+      defer></script>
+    <script
+      src="/components/molecules/delete-button/delete-button.js"
+      defer></script>
+    <script
+      src="/components/molecules/dropdown/dropdown.js"
+      defer></script>
+    <script
+      src="/components/molecules/number-spinner/number-spinner.js"
+      defer></script>
+    <script
+      src="/components/atoms/Button/button.js"
+      defer></script>
+    <script
+      src="/components/atoms/Input/input.js"
+      defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="header-container component-container"
+      data-component-url="/components/organisms/header/header.html"></div>
+    <div
+      id="title-invoice-info"
+      class="invoice-info-title component-container"
+      data-component-url="/components/molecules/page-title/page-title.html"></div>
+    <div
+      id="customer-name"
+      class="customer-name-labeled-input component-container"
+      data-component-url="/components/molecules/labeled-input/labeled-input.html"></div>
+    <div
+      id="customer-phone"
+      class="customer-phone-labeled-input component-container"
+      data-component-url="/components/molecules/labeled-input/labeled-input.html"></div>
+    <div
+      id="invoice-number"
+      class="invoice-number-labeled-input component-container"
+      data-component-url="/components/molecules/labeled-input/labeled-input.html"></div>
+    <div
+      id="company-name"
+      class="company-name-labeled-input component-container"
+      data-component-url="/components/molecules/labeled-input/labeled-input.html"></div>
+    <div
+      id="invoice-photo"
+      class="invoice-photo-labeled-image component-container"
+      data-component-url="/components/molecules/labeled-image/labeled-image.html"></div>
+    <div
+      id="product-photo"
+      class="invoice-photo-labeled-image component-container"
+      data-component-url="/components/molecules/labeled-image/labeled-image.html"></div>
+    <div
+      class="component-container"
+      data-component-url="/components/organisms/edit-returned-product/edit-returned-product.html"></div>
+    <div
+      id="add-button"
+      class="component-container"
+      data-component-url="/components/atoms/Button/button.html"></div>
+    <div
+      id="save-button"
+      class="component-container"
+      data-component-url="/components/atoms/Button/button.html"></div>
+    <div
+      class="footer-container component-container"
+      data-component-url="/components/organisms/footer/footer.html"></div>
+    <script src="/jQuery/init-component-labels.js"></script>
+    <script src="/jQuery/component-loader.js"></script>
+    <script src="/jQuery/component-click-events.js"></script>
+  </body>
+</html>

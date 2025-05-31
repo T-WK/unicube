@@ -3,13 +3,17 @@ const CompanyModel = require("../models/companyModel");
 // 업체 생성
 async function createCompany(req, res) {
   try {
-    const { name, access_token } = req.body;
+    const { name, access_token, note } = req.body;
     if (!name || !access_token) {
       return res
         .status(400)
         .json({ message: "업체 이름과 접근 토큰은 필수입니다." });
     }
-    const companyId = await CompanyModel.insertCompany({ name, access_token });
+    const companyId = await CompanyModel.insertCompany({
+      name,
+      access_token,
+      note,
+    });
     res.status(201).json({ id: companyId, message: "업체가 생성되었습니다." });
   } catch (error) {
     console.error("업체 생성 컨트롤러 오류:", error);
