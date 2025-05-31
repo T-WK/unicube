@@ -12,6 +12,8 @@ var labelMap = {
   "placeholder-choice-product-name": "상품 이름을 선택하세요.",
   "placeholder-choice-company": "업체를 선택하세요.",
   "placeholder-company-name": "업체 이름",
+  "placeholder-company-access-token": "업체 아이디",
+  "placeholder-company-note": "비고",
 
   "title-ocr": "OCR 결과",
   "title-products-list": "제품 목록",
@@ -23,7 +25,7 @@ var labelMap = {
   "title-invoice-info": "송장 데이터",
 
   "get-invoice-page-access-button": "송장 찍기",
-  "daga-processing-page-access-button": "데이터 추출",
+  "data-processing-page-access-button": "데이터 추출",
   "chart-page-access-button": "반품 현황",
   "product-page-access-button": "제품 관리",
   "company-page-access-button": "업체 관리",
