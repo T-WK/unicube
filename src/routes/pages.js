@@ -16,11 +16,14 @@ router.get("/invoice", (req, res) => {
 
 router.get("/company", (req, res) => {
   //express 앱(app)을 넣고, root directory에 오면,
+
+
   res.sendFile(path.join(__dirname, "../../public/pages/company/company.html"));
 });
 
 router.get("/ocr", (req, res) => {
   //express 앱(app)을 넣고, root directory에 오면,
+
   res.sendFile(path.join(__dirname, "../../public/pages/ocr/ocr.html"));
 });
 
