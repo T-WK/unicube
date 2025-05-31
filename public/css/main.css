@@ -155,10 +155,31 @@
   background-color: white;
 }
 
+html,
 body {
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
   margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  padding: 16px;
+}
+
+main {
+  flex: 1;
+  background: #f5f5f5;
+}
+
+footer {
+  color: white;
+  padding: 12px;
+  text-align: center;
 }
 
 .flex-container {

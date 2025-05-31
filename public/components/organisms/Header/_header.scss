@@ -1,11 +1,64 @@
 @use "../../../scss/abstracts/mixins" as mixins;
+@use "../../../scss/abstracts/variables" as va;
 
-.header-label {
+.header-container {
+  padding: 0 20px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+  background: #ffeeee; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #ddefbb,
+    #ffeeee
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #ddefbb,
+    #ffeeee
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.header-span {
   @include mixins.span-base;
   @include mixins.font-face("SUITE", "SUITE-SemiBold.woff2", 700, "woff2");
   font-weight: 700;
+  font-size: 3rem;
 }
 
 .header-icon {
-    
+  background-image: url("/images/app-icon.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: contain;
+
+  width: 120px;
+  aspect-ratio: 1;
+}
+
+.hamburger-menu {
+  background-image: url("/images/hambuger-menu.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: transparent;
+
+  border-radius: va.$border-radius;
+  margin-left: auto;
+
+  outline: none;
+  border: none;
+
+  width: 100px;
+  aspect-ratio: 1;
+
+  transition: box-shadow va.$transition;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: va.$box-shadow;
+  }
 }

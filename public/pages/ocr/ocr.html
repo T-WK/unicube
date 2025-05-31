@@ -10,7 +10,7 @@
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="/css/main.css"
       rel="stylesheet" />
@@ -23,35 +23,38 @@
   <body>
     <!-- 헤더 -->
     <header
-
-      class="header-container component-container"
-      data-component-url="/components/organisms/Header/header.html"></header>
+      id="header-title"
+      class="component-container"
+      data-component-url="/components/organisms/Header/header.html">
+    </header>
     <br />
-    <!-- title -->
-    <div
-      id="get-invoice-page-access-button"
-      class="get-invoice-title-container component-container flex-container margin-container"
-      data-component-url="/components/molecules/page-title/page-title.html"></div>
-    <br />
+    <main>
+      <!-- title -->
+      <div
+        id="get-invoice-page-access-button"
+        class="get-invoice-title-container component-container flex-container margin-container"
+        data-component-url="/components/molecules/page-title/page-title.html"></div>
+      <br />
 
-    <!-- 카메라 버튼 -->
-    <div
-      id="invoice-photo"
-      class="invoice-photo-labeled-image-container component-container flex-container margin-container"
-      data-component-url="/components/molecules/labeled-image/labeled-image.html"></div>
-    <br />
+      <!-- 카메라 버튼 -->
+      <div
+        id="invoice-photo"
+        class="invoice-photo-labeled-image-container component-container flex-container margin-container"
+        data-component-url="/components/molecules/labeled-image/labeled-image.html"></div>
+      <br />
 
-    <!-- 데이터 추출 버튼 -->
-    <div
-      id="data-processing-page-access-button"
-      class="data-process-button-container component-container flex-container margin-container"
-      data-component-url="/components/atoms/Button/button.html"></div>
-    <br />
-
+      <!-- 데이터 추출 버튼 -->
+      <div
+        id="data-processing-page-access-button"
+        class="data-process-button-container component-container flex-container margin-container"
+        data-component-url="/components/atoms/Button/button.html"></div>
+      <br />
+    </main>
     <!-- 푸터 -->
     <footer
-      class="header-container component-container"
-      data-component-url="/components/organisms/Footer/footer.html"></footer>
+      class="component-container"
+      data-component-url="/components/organisms/Footer/footer.html">
+    </footer>
 
     <script src="/jQuery/init-component-labels.js"></script>
     <script src="/jQuery/component-loader.js"></script>
