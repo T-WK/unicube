@@ -1,5 +1,7 @@
-@use "../../atoms/Label/label" as label;
-@use "../../atoms/Image/image" as image;
+@use "../../atoms/Label/label";
+@use "../../atoms/Image/image";
+@use "../../molecules/delete-button/delete-button";
+
 @use "../../../scss/abstracts/variables" as va;
 
 $ratio: 1;

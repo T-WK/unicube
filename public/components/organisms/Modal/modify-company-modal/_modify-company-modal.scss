@@ -1,16 +1,21 @@
+@use "../../../molecules/page-title/page-title";
+@use "../../../molecules/labeled-input/labeled-input";
+@use "../../../atoms/Button/button";
+@use "../../../scss/abstracts/variables" as va;
+
 .background {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #948b89;
-}
 
+  background-color: va.$gray-color;
+}
 .modal-container {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}/*# sourceMappingURL=add-product-modal.css.map */
+}

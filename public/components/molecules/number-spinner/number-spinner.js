@@ -1,13 +1,4 @@
 (function () {
-  const cssId = "spinner-container";
-  if (!document.getElementById(cssId)) {
-    const link = document.createElement("link");
-    link.id = cssId;
-    link.rel = "stylesheet";
-    link.href = "/components/molecules/number-spinner/number-spinner.css";
-    document.head.appendChild(link);
-  }
-
   // 숫자 이외 값 입력 방지 (delegate)
   $(document).on("input", ".spinner-input", function () {
     var clean = this.value.replace(/\D/g, ""); // 숫자만 남기기

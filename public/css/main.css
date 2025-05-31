@@ -141,6 +141,12 @@ body {
   margin: 0;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .add-modal-container {
   width: 100%;
   height: 100%;

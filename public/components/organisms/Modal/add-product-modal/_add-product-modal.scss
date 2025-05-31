@@ -1,3 +1,8 @@
+@use "../../molecules/page-title/page-title";
+@use "../../molecules/dropdown/dropdown";
+@use "../../molecules/labeled-input/labeled-input";
+@use "../../atoms/Button/button";
+
 @use "../../../scss/abstracts/variables" as va;
 
 .add-modal-container {

@@ -1,5 +1,5 @@
-@use "../../atoms/Label/label" as label;
-@use "../../atoms/Input/input" as input;
+@use "../../atoms/Label/label";
+@use "../../atoms/Input/input";
 @use "../../../scss/abstracts/variables" as va;
 
 $ratio: 7/1;
