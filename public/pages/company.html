@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script src="/components/atoms/Input/input.js"></script>
+    <script src="/components/atoms/Button/button.js"></script>
+    <script
+      src="/components/molecules/labeled-input/labeled-input.js"
+      defer></script>
+    <script
+      src="/components/molecules/labeled-image/labeled-image.js"
+      defer></script>
+    <script
+      src="/components/molecules/delete-button/delete-button.js"
+      defer></script>
+    <script
+      src="/components/molecules/dropdown/dropdown.js"
+      defer></script>
+    <script
+      src="/components/molecules/number-spinner/number-spinner.js"
+      defer></script>
+
+    <title>업체 정보 조회</title>
+  </head>
+  <body>
+    <div
+      class="header-container component-container"
+      data-component-url="/components/organisms/Header/header.html"></div>
+    <br />
+    <!-- title -->
+    <div
+      id="title-company-list"
+      class="company-info-title-container component-container"
+      data-component-url="/components/molecules/page-title/page-title.html"></div>
+    <br />
+
+    <!-- 키워드 -->
+    <div class="flex-1 min-w-[200px]">
+      <label
+        for="keyword"
+        class="block text-sm font-medium text-gray-700"></label>
+      <input
+        id="keyword"
+        type="text"
+        placeholder="업체이름"
+        class="mt-1 block w-full px-3 py-2 border rounded-md focus:ring-indigo-500" />
+      <button
+        id="searchBtn"
+        class="px-5 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+        검색
+      </button>
+    </div>
+    <div
+      id="add-button"
+      class="add-company-button-container component-container"
+      data-component-url="/components/atoms/Button/button.html">
+    </div>
+    <br />
+
+    <!-- 결과 테이블 -->
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+              ID
+            </th>
+            <th
+              class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+              업체 이름
+            </th>
+            <th
+              class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+              업체 아이디
+            </th>
+            <th
+              class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+              비고
+            </th>
+            <th
+              class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+              액션
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          id="invoiceTableBody"
+          class="bg-white divide-y divide-gray-200">
+          <!-- JS 동적 생성 -->
+        </tbody>
+      </table>
+    </div>
+    <!-- 페이지네이션 -->
+    <nav
+      id="pagination"
+      class="flex justify-center gap-2 mt-4"></nav>
+    <div
+      class="header-container component-container"
+      data-component-url="/components/organisms/Footer/footer.html"></div>
+
+    <script src="/jQuery/init-component-labels.js"></script>
+    <script src="/jQuery/component-loader.js"></script>
+    <script src="/jQuery/component-click-events.js"></script>
+  </body>
+</html>
