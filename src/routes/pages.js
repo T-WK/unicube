@@ -7,4 +7,9 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/index.html")); // index.html 파일을 응답으로 보낸다.
 });
 
+router.get("/invoice", (req, res) => {
+  //express 앱(app)을 넣고, root directory에 오면,
+  res.sendFile(path.join(__dirname, "../../public/pages/save-invoice.html")); // index.html 파일을 응답으로 보낸다.
+});
+
 module.exports = router;

@@ -3,9 +3,9 @@ const pool = require("../db");
 async function insertCompany(companyData) {
   try {
     const [result] = await pool.execute(
-      `INSERT INTO company (name, access_token, created_at)
+      `INSERT INTO company (name, access_token, note, created_at)
        VALUES (?, ?, NOW())`,
-      [companyData.name, companyData.access_token],
+      [companyData.name, companyData.access_token, companyData.note],
     );
     return result.insertId;
   } catch (error) {

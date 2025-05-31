@@ -20,6 +20,7 @@ var labelMap = {
   "title-company-list": "업체 목록",
   "title-add-company": "업체 추가",
   "title-company-info": "업체 정보",
+  "title-invoice-info": "송장 데이터",
 
   "get-invoice-page-access-button": "송장 찍기",
   "daga-processing-page-access-button": "데이터 추출",
@@ -29,6 +30,10 @@ var labelMap = {
   "add-button": "추가",
   "modify-button": "수정",
   "delete-button": "삭제",
+  "save-button": "저장",
+
+  "label-returned-quantity": "입고수량",
+  "label-resalable-quantity": "상품화 가능 수량",
 };
 
 jQuery.initComponentLabels = function (context) {
