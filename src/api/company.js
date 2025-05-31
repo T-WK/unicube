@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const companyController = require("../controllers/companyController");
-const { authorize, authMiddleware } = require("../utils/authorize");
+const { authorize } = require("../utils/authorize");
 
 router.post("/", authorize(["admin"]), companyController.createCompany);
 router.get("/:id", authorize(["admin"]), companyController.getCompanyById);

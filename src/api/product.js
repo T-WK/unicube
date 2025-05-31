@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const productController = require("../controllers/productController");
-const { authorize, authMiddleware } = require("../utils/authorize");
+const { authorize } = require("../utils/authorize");
 
 router.post("/", authorize(["admin"]), productController.createProduct);
 router.get("/:id", authorize(["admin"]), productController.getProductById);
