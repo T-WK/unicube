@@ -1,24 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-// GET /api/product
-router.get('/', (req, res) => {
-    res.json({ message: 'Get products' });
-  });
-  
-  // POST /api/product
-  router.post('/', (req, res) => {
-    res.json({ message: 'Create product' });
-  });
-  
-  // PATCH /api/product/:id
-  router.patch('/:id', (req, res) => {
-    res.json({ message: `Update product ${req.params.id}` });
-  });
-  
-  // DELETE /api/product/:id
-  router.delete('/:id', (req, res) => {
-    res.json({ message: `Delete product ${req.params.id}` });
-  });
-  
-  module.exports = router;
+const productController = require("../controllers/productController");
+const { authorize, authMiddleware } = require("../utils/authorize");
+
+router.post("/", authorize(["admin"]), productController.createProduct);
+router.get("/:id", authorize(["admin"]), productController.getProductById);
+router.get("/", authorize(["admin"]), productController.getAllProducts);
+router.put("/:id", authorize(["admin"]), productController.updateProduct);
+router.delete("/:id", authorize(["admin"]), productController.deleteProduct);
+
+module.exports = router;
