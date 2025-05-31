@@ -23,7 +23,6 @@
   <body>
     <!-- 헤더 -->
     <header
-
       class="header-container component-container"
       data-component-url="/components/organisms/Header/header.html"></header>
     <br />
@@ -53,10 +52,18 @@
       class="header-container component-container"
       data-component-url="/components/organisms/Footer/footer.html"></footer>
 
+    <div
+      id="loadingIndicator"
+      style="display: none">
+      <div class="loading-backdrop">
+        <div class="loading-text">처리 중입니다...</div>
+      </div>
+    </div>
+
     <script src="/jQuery/init-component-labels.js"></script>
     <script src="/jQuery/component-loader.js"></script>
     <script src="/jQuery/component-click-events.js"></script>
 
-    <script src="/js/ocr.js"></script>
+    <script src="/pages/ocr/ocr.js"></script>
   </body>
 </html>
