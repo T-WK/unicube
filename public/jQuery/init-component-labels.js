@@ -36,6 +36,8 @@ var labelMap = {
 
   "label-returned-quantity": "입고수량",
   "label-resalable-quantity": "상품화 가능 수량",
+
+  "header-title": "3PL 반품 자동화 솔루션",
 };
 
 jQuery.initComponentLabels = function (context) {
