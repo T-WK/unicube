@@ -8,16 +8,23 @@
 
   height: 10vh;
   width: 50vw;
-  // aspect-ratio: 10 / 1;
+  max-width: 700px;
 
-  background-color: va.$blue-color;
+  background-color: va.$white-color;
+
+  border: va.$border;
   border-radius: va.$border-radius;
+  border-color: va.$yellow-color;
+
+  &.modal-title {
+    max-width: 400px
+  }
 }
 
 .page-title {
   @include mixins.font-face("SUITE", "SUITE-ExtraBold.woff2", 800, "woff2");
   font-weight: 800;
   font-size: 2.5rem;
-  color: va.$white-color;
+  color: va.$black-color;
   text-align: center;
 }

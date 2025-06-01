@@ -1,17 +1,15 @@
-@use "../../atoms/Label/label";
-@use "../../atoms/Input/input";
 @use "../../../scss/abstracts/variables" as va;
+@use "../../../scss/abstracts/mixins" as mixins;
 
-.labeled-input {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-
+.textarea-div {
+  overflow: hidden;
   border: va.$border;
   border-radius: va.$border-radius;
 
+  padding: 10px;
+
   width: va.$big-width;
-  aspect-ratio: 7/1;
+  aspect-ratio: 2/1;
   max-width: va.$big-max-width;
   min-width: va.$big-min-width;
 
@@ -35,6 +33,13 @@
   }
 }
 
-.labeled-input .input {
-  border-radius: va.$border-radius;
+.textarea {
+  @include mixins.font-face("SUITE", "SUITE-SemiBold.woff2", 400, "woff2");
+  font-weight: 400;
+
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  resize: none;
 }

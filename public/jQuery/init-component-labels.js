@@ -41,17 +41,34 @@ var labelMap = {
 };
 
 jQuery.initComponentLabels = function (context) {
-  // context가 jQuery 객체면 그 안만, 아니면 document 전체를 스캔
   var $root = context && context.jquery ? context : $(document);
 
-  $root
-    .find('[class~="component-container"]')
-    .addBack('[class~="component-container"]')
-    .each(function () {
-      var $comp = $(this);
-      var id = $comp.attr("id");
-      var labelText = labelMap[id] || "Label";
+  // context 내의 모든 .component-label 요소를 순회
+  $root.find('[class~="component-label"]').each(function () {
+    var $label = $(this);
 
-      $comp.find('[class~="component-label"]').text(labelText);
+    // 1) 현재 라벨에서 가장 가까운 상위 .component-container를 모두 가져온다
+    //    (closest 하나만 잡지 않고, 부모 요소 중에서 모든 .component-container를 리스트로 구함)
+    var $allContainers = $label.parents('[class~="component-container"]');
+
+    // 2) 그 중에서 id가 있는 첫 번째(=가장 가까운) 요소를 찾는다
+    var compId = null;
+    $allContainers.each(function () {
+      if (this.id) {
+        compId = this.id;
+        return false; // break
+      }
     });
+
+    // 3) labelMap에 정의된 값이 있으면 사용, 그렇지 않으면 기본값 "Label"
+    var labelText = compId && labelMap[compId] ? labelMap[compId] : "Label";
+
+    // 4) input이고 .placeholder 클래스가 있으면 placeholder 속성에 값을 넣고,
+    //    그렇지 않으면 text로 세팅
+    if (($label.is("input") || $label.is("textarea")) && $label.hasClass("placeholder")) {
+      $label.attr("placeholder", labelText);
+    } else {
+      $label.text(labelText);
+    }
+  });
 };

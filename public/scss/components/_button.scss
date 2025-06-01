@@ -20,37 +20,6 @@
     pointer-events: none;
   }
 
-  &.small {
-    width: variables.$small-width;
-    max-width: variables.$small-max-width;
-    min-width: variables.$small-min-width;
-  }
-
-  &.--red {
-    background-color: variables.$red-color;
-    color: variables.$white-color;
-
-    &:hover {
-      background-color: darken($color: variables.$red-color, $amount: 10%);
-    }
-
-    &:active {
-      background-color: lighten($color: variables.$red-color, $amount: 10%);
-    }
-  }
-
-  &.--yellow {
-    background-color: variables.$yellow-color;
-    color: variables.$black-color;
-
-    &:hover {
-      background-color: darken($color: variables.$yellow-color, $amount: 10%);
-    }
-
-    &:active {
-      background-color: lighten($color: variables.$yellow-color, $amount: 10%);
-    }
-  }
 }
 
 .button-text {

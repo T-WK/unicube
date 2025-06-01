@@ -17,17 +17,12 @@
 * 버튼
 */
 @mixin button-base {
-  $ratio: 5/1;
-
   @include font-face("SUITE", "SUITE-Bold.woff2", 600, "woff2");
   font-family: "SUITE", sans-serif;
   text-align: center;
 
   width: va.$button-widht;
-  aspect-ratio: $ratio;
-
-  max-width: va.$big-max-width;
-  min-width: va.$big-min-width;
+  aspect-ratio: 5/1;
 
   color: va.$black-color;
   padding: va.$button-padding;
@@ -52,6 +47,7 @@
   outline: none;
   width: 85%;
   height: 80%;
+  padding: 0 15px;
 
   &::placeholder {
     color: va.$gray-color;

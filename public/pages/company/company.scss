@@ -2,22 +2,14 @@
 @use "../../components/molecules/labeled-image/labeled-image";
 @use "../../components/molecules/page-title/page-title";
 @use "../../components/organisms/Header/header";
+@use "../../components/organisms/Modal/add-company-modal/add-company-modal";
 
-.loading-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
+.flex-container-left {
   display: flex;
   justify-content: center;
-  align-items: center;
+  justify-content: end;
 }
 
-.loading-text {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
+main {
+    padding: 20px;
 }

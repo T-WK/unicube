@@ -1,1 +1,26 @@
-@use "../../../scss/components/button" as button;
+@use "../../../scss/components/button";
+@use "../../../scss/abstracts/mixins" as mixins;
+@use "../../../scss/abstracts/variables" as va;
+
+.small-button {
+  @include mixins.button-base;
+
+  background-color: va.$blue-color;
+
+  width: 80px;
+  height: 40px;
+
+  aspect-ratio: 3/1;
+
+  &:hover {
+    background-color: darken($color: va.$blue-color, $amount: 10%);
+  }
+
+  &:active {
+    background-color: lighten($color: va.$blue-color, $amount: 10%);
+  }
+}
+
+.small-button-text {
+  font-size: 1rem;
+}

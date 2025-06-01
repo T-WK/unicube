@@ -55,10 +55,11 @@
   width: 100px;
   aspect-ratio: 1;
 
-  transition: box-shadow va.$transition;
+  transition: box-shadow va.$transition background-color va.$transition;
 
   &:hover {
     cursor: pointer;
     box-shadow: va.$box-shadow;
+    background-color: white;
   }
 }

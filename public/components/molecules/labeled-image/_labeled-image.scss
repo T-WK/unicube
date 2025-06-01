@@ -4,8 +4,6 @@
 
 @use "../../../scss/abstracts/variables" as va;
 
-$ratio: 1;
-
 .labeled-image {
   display: flex;
   align-items: center;
@@ -19,7 +17,7 @@ $ratio: 1;
   width: va.$image-width;
   max-width: va.$image-max-width;
   min-width: va.$image-min-width;
-  aspect-ratio: $ratio;
+  aspect-ratio: 1;
 
   &:hover {
     cursor: pointer;

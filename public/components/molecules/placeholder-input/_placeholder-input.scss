@@ -1,8 +1,10 @@
-@use "../../atoms/Label/label";
-@use "../../atoms/Input/input";
+@use "../../../scss/abstracts/mixins" as mixins;
 @use "../../../scss/abstracts/variables" as va;
+@use "../../atoms/Input/input";
 
-.labeled-input {
+.placeholder-input {
+  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: left;
@@ -33,8 +35,4 @@
     border-color: va.$gray-color;
     pointer-events: none;
   }
-}
-
-.labeled-input .input {
-  border-radius: va.$border-radius;
 }
