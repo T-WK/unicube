@@ -223,6 +223,63 @@
   src: url("/fonts/SUITE-ExtraBold.woff2") format("woff2");
 }
 
+.header-container {
+  padding: 0 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background: #ffeeee; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #ddefbb, #ffeeee); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.header-span {
+  font-family: "SUITE", sans-serif;
+  color: #292e1e;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 3rem;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 400;
+  src: url("/fonts/SUITE-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 700;
+  src: url("/fonts/SUITE-SemiBold.woff2") format("woff2");
+}
+
+.header-icon {
+  background-image: url("/images/app-icon.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: contain;
+  width: 120px;
+  aspect-ratio: 1;
+}
+
+.hamburger-menu {
+  background-image: url("/images/hambuger-menu.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  background-color: transparent;
+  border-radius: 22px;
+  margin-left: auto;
+  outline: none;
+  border: none;
+  width: 100px;
+  aspect-ratio: 1;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.hamburger-menu:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
+}
+
 .margin-container {
   margin: 5vw 0;
 }
