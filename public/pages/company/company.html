@@ -28,6 +28,7 @@
       data-component-url="/components/organisms/Header/header.html">
     </header>
     <br />
+
     <main>
       <br />
       <br />
@@ -75,7 +76,7 @@
 
       <!-- 결과 테이블 -->
       <div class="overflow-x-auto bg-white rounded-lg shadow">
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200 overflow-hidden">
           <thead class="bg-gray-50">
             <tr>
               <th
@@ -119,11 +120,22 @@
       data-component-url="/components/organisms/Footer/footer.html">
     </footer>
     <br />
+
+    <!-- 업체 추가 모달 -->
     <div
+      id="add-modal"
       class="component-container modal hidden"
       role="dialog"
       aria-hidden="true"
       data-component-url="/components/organisms/Modal/add-company-modal/add-company-modal.html"></div>
+
+    <!-- 업체 수정 모달 -->
+    <div
+      id="modify-modal"
+      class="component-container modal hidden"
+      role="dialog"
+      aria-hidden="true"
+      data-component-url="/components/organisms/Modal/modify-company-modal/modify-company-modal.html"></div>
 
     <script src="/jQuery/init-component-labels.js"></script>
     <script src="/jQuery/component-loader.js"></script>

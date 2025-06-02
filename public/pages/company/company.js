@@ -30,14 +30,20 @@ $(document).ready(function () {
           dataType: "json",
           success: function (company) {
             // 값 채우기
-            $("#placeholder-company-name input").val(company.name);
-            $("#placeholder-company-access-token input").val(
-              company.access_token,
-            );
-            $("#placeholder-company-note input").val(company.note || "");
+            $('[id~="modify-modal"]')
+              .find("#placeholder-company-name input")
+              .val(company.name);
 
-            // 모달 보여주기
-            $("#modify-company-modal-container").removeClass("hidden").show();
+            $('[id~="modify-modal"]')
+              .find("#placeholder-company-access-token input")
+              .val(company.access_token);
+
+            $('[id~="modify-modal"]')
+              .find("#placeholder-company-note input")
+              .val(company.note || "");
+
+            // 모달 보여주기modify-modal
+            $('[id~="modify-modal"]').removeClass("hidden").show();
           },
           error: function () {
             alert("업체 정보를 불러오지 못했습니다.");

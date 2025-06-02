@@ -32,7 +32,9 @@
   cursor: pointer;
   transition:
     background-color va.$transition,
-    color va.$transition;
+    color va.$transition,
+    border-color va.$transition,
+    shadow-box va.$transition;
 }
 
 /*

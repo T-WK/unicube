@@ -26,7 +26,7 @@
   padding: 0.5rem 1.5rem;
   border-radius: 22px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, shadow-box 0.2s ease-in-out;
   background-color: #3423a6;
   color: #fafffd;
 }
@@ -76,11 +76,10 @@
   padding: 0.5rem 1.5rem;
   border-radius: 22px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, shadow-box 0.2s ease-in-out;
   background-color: #3423a6;
   width: 80px;
   height: 40px;
-  aspect-ratio: 3/1;
 }
 @font-face {
   font-family: "SUITE";
@@ -96,6 +95,36 @@
 
 .small-button-text {
   font-size: 1rem;
+}
+
+.delete-button {
+  font-family: "SUITE", sans-serif;
+  text-align: center;
+  width: 75%;
+  aspect-ratio: 5/1;
+  color: #292e1e;
+  padding: 0.5rem 1.5rem;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, shadow-box 0.2s ease-in-out;
+  background-color: white;
+  border: 2px solid #948b89;
+  border-color: #f97068;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 600;
+  src: url("/fonts/SUITE-Bold.woff2") format("woff2");
+}
+.delete-button:hover {
+  background-color: #e6e6e6;
+}
+.delete-button:active {
+  background-color: white;
+}
+
+.delete-button-text {
+  color: #292e1e;
 }
 
 .label {
@@ -238,6 +267,7 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: #ffeeee; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #ddefbb, #ffeeee); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 6px;
 }
 
 .header-span {

@@ -1,7 +1,7 @@
 $(function () {
   console.log("DOM ready!");
   $(document).on("click", "#add-button", function () {
-    $('[class~="modal"]').removeClass("hidden");
+    $('[id~="add-modal"]').removeClass("hidden");
   });
 
   $(document).on("click", ".modal", function (e) {

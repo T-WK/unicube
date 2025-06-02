@@ -321,134 +321,6 @@
   background-color: white;
 }
 
-.input {
-  font-family: "SUITE", sans-serif;
-  font-weight: 400;
-  background-color: white;
-  border: none;
-  outline: none;
-  width: 85%;
-  height: 80%;
-  padding: 0 15px;
-  color: #292e1e;
-  font-size: 1.5rem;
-}
-@font-face {
-  font-family: "SUITE";
-  font-weight: 400;
-  src: url("/fonts/SUITE-Regular.woff2") format("woff2");
-}
-.input::-moz-placeholder {
-  color: #948b89;
-}
-.input::placeholder {
-  color: #948b89;
-}
-.input.disabled {
-  color: #948b89;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.placeholder-input {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  border: 2px solid #948b89;
-  border-radius: 22px;
-  width: 75%;
-  aspect-ratio: 7/1;
-  max-width: 800px;
-  min-width: 250px;
-  transition: border-color 0.2s ease-in-out border-width 0.2s ease-in-out box-shadow 0.2s ease-in-out;
-}
-.placeholder-input:focus-within {
-  border-color: #3423a6;
-  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
-  border-width: 2px;
-}
-.placeholder-input.error {
-  border-color: #f97068;
-  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
-}
-.placeholder-input.disabled {
-  border-color: #948b89;
-  pointer-events: none;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* 반투명 어두운 배경 */
-  background: rgba(0, 0, 0, 0.5);
-  /* Flexbox로 내부를 중앙 정렬 */
-  display: flex;
-  justify-content: center; /* 가로 중앙 */
-  align-items: center; /* 세로 중앙 */
-  /* 모달이 열리지 않은 상태에서 화면 상호작용을 막기 위해 */
-  z-index: 1000;
-}
-
-.modal-container {
-  width: 80%;
-  max-height: 770px;
-  max-width: 650px;
-  display: inline;
-  justify-content: center;
-  align-items: center;
-  border-radius: 22px;
-  background-color: white;
-  padding: 20px 30px;
-  overflow-y: auto; /* 내용이 많으면 내부 스크롤 */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-.modal-container::-webkit-scrollbar {
-  display: none;
-}
-
-.textarea-div {
-  overflow: hidden;
-  border: 2px solid #948b89;
-  border-radius: 22px;
-  padding: 10px;
-  width: 75%;
-  aspect-ratio: 2/1;
-  max-width: 800px;
-  min-width: 250px;
-  transition: border-color 0.2s ease-in-out border-width 0.2s ease-in-out box-shadow 0.2s ease-in-out;
-}
-.textarea-div:focus-within {
-  border-color: #3423a6;
-  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
-  border-width: 2px;
-}
-.textarea-div.error {
-  border-color: #f97068;
-  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
-}
-.textarea-div.disabled {
-  border-color: #948b89;
-  pointer-events: none;
-}
-
-.textarea {
-  font-weight: 400;
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  resize: none;
-}
-@font-face {
-  font-family: "SUITE";
-  font-weight: 400;
-  src: url("/fonts/SUITE-SemiBold.woff2") format("woff2");
-}
-
 .dropdown {
   display: flex;
   justify-content: center;
@@ -584,49 +456,93 @@ ul li {
   cursor: pointer;
 }
 
-.button-container {
-  width: 100%;
-}
-
-.modal-container .button-text {
+.input {
+  font-family: "SUITE", sans-serif;
+  font-weight: 400;
+  background-color: white;
+  border: none;
+  outline: none;
+  width: 85%;
+  height: 80%;
+  padding: 0 15px;
+  color: #292e1e;
   font-size: 1.5rem;
 }
+@font-face {
+  font-family: "SUITE";
+  font-weight: 400;
+  src: url("/fonts/SUITE-Regular.woff2") format("woff2");
+}
+.input::-moz-placeholder {
+  color: #948b89;
+}
+.input::placeholder {
+  color: #948b89;
+}
+.input.disabled {
+  color: #948b89;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
-.modal-container > .flex-container {
+.placeholder-input {
+  overflow: hidden;
   display: flex;
+  align-items: center;
+  justify-content: left;
+  border: 2px solid #948b89;
+  border-radius: 22px;
+  width: 75%;
+  aspect-ratio: 7/1;
+  max-width: 800px;
+  min-width: 250px;
+  transition: border-color 0.2s ease-in-out border-width 0.2s ease-in-out box-shadow 0.2s ease-in-out;
+}
+.placeholder-input:focus-within {
+  border-color: #3423a6;
+  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
+  border-width: 2px;
+}
+.placeholder-input.error {
+  border-color: #f97068;
+  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
+}
+.placeholder-input.disabled {
+  border-color: #948b89;
+  pointer-events: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 반투명 어두운 배경 */
+  background: rgba(0, 0, 0, 0.5);
+  /* Flexbox로 내부를 중앙 정렬 */
+  display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center; /* 세로 중앙 */
+  /* 모달이 열리지 않은 상태에서 화면 상호작용을 막기 위해 */
+  z-index: 1000;
+}
+
+.modal-container {
+  width: 80%;
+  max-height: 770px;
+  max-width: 650px;
+  display: inline;
   justify-content: center;
   align-items: center;
+  border-radius: 22px;
+  background-color: white;
+  padding: 20px 30px;
+  overflow-y: auto; /* 내용이 많으면 내부 스크롤 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
-.modal-container > .flex-container.button-container {
-  gap: 0.5rem;
-}
-.modal-container > .flex-container.button-container > .component-container {
-  /* flex:1 → flex:none 으로 바꿔, 버튼이 컨테이너 폭 전체를 찌우지 않도록 */
-  flex: none;
-  /* 버튼이 너무 작아지지 않도록 최소 너비 지정(취향에 맞게 조정) */
-  min-width: 4rem;
-}
-.modal-container > .flex-container.button-container > .component-container button {
-  /* 가로 너비를 내용 크기에 맞추기 위해 auto */
-  width: auto;
-  /* 예시 높이 값도 약간 줄여서 모바일에도 잘 맞도록 */
-  height: 2.5rem;
-  padding: 0 1rem; /* 좌우 여백으로 버튼 폭을 결정 */
-}
-@media (max-width: 640px) {
-  .modal-container .flex-container.button-container {
-    /* 세로 스택(원래 코드가 있다면 유지) */
-    flex-direction: column;
-    gap: 1.5rem; /* 모바일에서는 간격을 더 좁게(≈6px) */
-  }
-  .modal-container .flex-container.button-container > .component-container {
-    flex: none;
-    width: 100%;
-  }
-  .modal-container .flex-container.button-container > .component-container button {
-    height: 2.3rem;
-    padding: 0 0.8rem;
-  }
+.modal-container::-webkit-scrollbar {
+  display: none;
 }
 
 .flex-container-left {
@@ -637,4 +553,4 @@ ul li {
 
 main {
   padding: 20px;
-}/*# sourceMappingURL=company.css.map */
+}/*# sourceMappingURL=product.css.map */

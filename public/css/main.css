@@ -55,7 +55,7 @@
   padding: 0.5rem 1.5rem;
   border-radius: 22px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, shadow-box 0.2s ease-in-out;
   background-color: #3423a6;
   color: #fafffd;
 }
@@ -169,18 +169,22 @@ footer {
   text-align: center;
 }
 
+input,
+button,
+th {
+  font-family: "SUITE", sans-serif;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SUITE";
+  font-weight: 400;
+  src: url("/fonts/SUITE-Regular.woff2") format("woff2");
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.add-modal-container {
-  width: 100%;
-  height: 100%;
-  background-color: #948b89;
-  opacity: 0.5;
-  z-index: 6000;
 }
 
 .component-container {

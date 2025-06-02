@@ -2,8 +2,7 @@
 @use "../../components/molecules/labeled-image/labeled-image";
 @use "../../components/molecules/page-title/page-title";
 @use "../../components/organisms/Header/header";
-@use "../../components/organisms/Modal/add-company-modal/add-company-modal";
-@use "../../components/organisms/Modal/modify-company-modal/modify-company-modal";
+@use "../../components/organisms/Modal/add-product-modal/add-product-modal";
 
 .flex-container-left {
   display: flex;
@@ -12,5 +11,5 @@
 }
 
 main {
-  padding: 20px;
+    padding: 20px;
 }

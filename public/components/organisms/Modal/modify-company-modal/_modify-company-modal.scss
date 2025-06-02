@@ -1,25 +1,59 @@
 @use "../../../molecules/page-title/page-title";
-@use "../../../molecules/labeled-input/labeled-input";
+@use "../../../molecules/dropdown/dropdown";
 @use "../../../atoms/Button/button";
-@use "../../../scss/abstracts/variables" as va;
 
-.background {
+@use "../../../../scss/abstracts/variables" as va;
+
+.button-container {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: va.$gray-color;
 }
+
+.modal-container .button-text {
+  font-size: 1.5rem;
+}
+
 .modal-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  > .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.hidden {
-  display: none;
+    &.button-container {
+      gap: 0.5rem; // 자식들 사이 12px 간격
+
+      > .component-container {
+        /* flex:1 → flex:none 으로 바꿔, 버튼이 컨테이너 폭 전체를 찌우지 않도록 */
+        flex: none;
+        /* 버튼이 너무 작아지지 않도록 최소 너비 지정(취향에 맞게 조정) */
+        min-width: 4rem;
+
+        button {
+          /* 가로 너비를 내용 크기에 맞추기 위해 auto */
+          width: auto;
+          /* 예시 높이 값도 약간 줄여서 모바일에도 잘 맞도록 */
+          height: 2.5rem;
+          padding: 0 1rem; /* 좌우 여백으로 버튼 폭을 결정 */
+        }
+      }
+    }
+  }
+
+  // 2. 반응형: 화면이 아주 작은 경우(예: 화면 폭 640px 이하) 세로 쌓기
+  @media (max-width: 640px) {
+    .flex-container.button-container {
+      /* 세로 스택(원래 코드가 있다면 유지) */
+      flex-direction: column;
+      gap: 1.5rem; /* 모바일에서는 간격을 더 좁게(≈6px) */
+
+      > .component-container {
+        flex: none;
+        width: 100%;
+
+        button {
+          height: 2.3rem;
+          padding: 0 0.8rem;
+        }
+      }
+    }
+  }
 }
