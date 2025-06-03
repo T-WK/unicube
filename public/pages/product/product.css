@@ -545,6 +545,14 @@ ul li {
   display: none;
 }
 
+.dropdown {
+  width: 100%;
+}
+
+.dropdown-container {
+  width: 75%;
+}
+
 .flex-container-left {
   display: flex;
   justify-content: center;

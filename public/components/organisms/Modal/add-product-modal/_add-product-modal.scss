@@ -5,3 +5,11 @@
 @use "../../../../scss/components/modal";
 
 @use "../../../../scss/abstracts/variables" as va;
+
+.dropdown {
+  width: 100%;
+}
+
+.dropdown-container {
+    width: va.$big-width;
+}
