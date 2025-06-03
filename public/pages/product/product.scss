@@ -3,6 +3,7 @@
 @use "../../components/molecules/page-title/page-title";
 @use "../../components/organisms/Header/header";
 @use "../../components/organisms/Modal/add-product-modal/add-product-modal";
+@use "../../components/organisms/Modal/modify-product-modal/modify-product-modal";
 
 .flex-container-left {
   display: flex;

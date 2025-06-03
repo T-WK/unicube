@@ -553,6 +553,62 @@ ul li {
   width: 75%;
 }
 
+.dropdown {
+  width: 100%;
+}
+
+.dropdown-container {
+  width: 75%;
+}
+
+.button-container {
+  width: 100%;
+}
+
+.modal-container .button-text {
+  font-size: 1.5rem;
+}
+
+.modal-container > .flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container > .flex-container.button-container {
+  gap: 0.5rem;
+}
+.modal-container > .flex-container.button-container > .component-container {
+  /* flex:1 → flex:none 으로 바꿔, 버튼이 컨테이너 폭 전체를 찌우지 않도록 */
+  flex: none;
+  /* 버튼이 너무 작아지지 않도록 최소 너비 지정(취향에 맞게 조정) */
+  min-width: 4rem;
+}
+.modal-container > .flex-container.button-container > .component-container button {
+  /* 가로 너비를 내용 크기에 맞추기 위해 auto */
+  width: auto;
+  /* 예시 높이 값도 약간 줄여서 모바일에도 잘 맞도록 */
+  height: 2.5rem;
+  padding: 0 1rem; /* 좌우 여백으로 버튼 폭을 결정 */
+}
+@media (max-width: 640px) {
+  .modal-container .flex-container.button-container {
+    /* 세로 스택(원래 코드가 있다면 유지) */
+    flex-direction: column;
+    gap: 1.5rem; /* 모바일에서는 간격을 더 좁게(≈6px) */
+  }
+  .modal-container .flex-container.button-container > .component-container {
+    flex: none;
+    width: 100%;
+  }
+  .modal-container .flex-container.button-container > .component-container button {
+    height: 2.3rem;
+    padding: 0 0.8rem;
+  }
+  .modal-container .dropdown-label {
+    font-size: 1.25rem;
+  }
+}
+
 .flex-container-left {
   display: flex;
   justify-content: center;
