@@ -1,0 +1,22 @@
+@use "../../components/atoms/Button/button";
+@use "../../components/molecules/labeled-image/labeled-image";
+@use "../../components/molecules/labeled-input/labeled-input";
+@use "../../components/molecules/page-title/page-title";
+@use "../../components/organisms/Header/header";
+@use "../../components/organisms/Modal/add-product-modal/add-product-modal";
+@use "../../components/organisms/Modal/modify-product-modal/modify-product-modal";
+@use "../../components/molecules/number-spinner/number-spinner";
+@use "../../components/molecules/placeholder-input/placeholder-input";
+
+@use "../../scss/abstracts/variables" as va;
+
+.dropdown {
+  width: va.$big-width;
+}
+
+.dropdown-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}

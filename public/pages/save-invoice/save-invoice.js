@@ -1,18 +1,7 @@
-// $(document).on("click", "#add-button", function () {
-//   const newComponent = $(
-//     '<div class="component-container" data-component-url="/components/organisms/edit-returned-product/edit-returned-product.html"></div>',
-//   );
-//   newComponent.load(
-//     "/components/organisms/edit-returned-product/edit-returned-product.html",
-//     function () {
-//       $(".returned-product-wrapper").append(newComponent);
-//     },
-//   );
-// });
-
 $(document).on("click", "#add-button", function () {
-  const $component = $('<div class="component-container"></div>');
-
+  const $component = $(
+    '<div class="component-container margin-container"></div>',
+  );
   // 1. HTML을 불러온다
   $component.load(
     "/components/organisms/edit-returned-product/edit-returned-product.html",
