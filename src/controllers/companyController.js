@@ -51,7 +51,7 @@ async function getAllCompanies(req, res) {
 async function updateCompany(req, res) {
   try {
     const companyId = req.params.id;
-    const { name, access_token } = req.body;
+    const { name, access_token, note } = req.body;
     if (!name || !access_token) {
       return res
         .status(400)
@@ -60,6 +60,7 @@ async function updateCompany(req, res) {
     const updated = await CompanyModel.updateCompany(companyId, {
       name,
       access_token,
+      note,
     });
     if (!updated) {
       return res

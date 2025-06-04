@@ -52,11 +52,10 @@ async function updateProduct(id, productData) {
   try {
     const [result] = await pool.execute(
       `UPDATE product
-       SET company_id = ?,
-           name = ?,
+       SET name = ?,
            updated_at = NOW()
        WHERE id = ? AND deleted_at IS NULL`,
-      [productData.company_id, productData.name, id],
+      [productData.name, id],
     );
     return result.affectedRows > 0;
   } catch (error) {
