@@ -7,7 +7,7 @@ const { authorize } = require("../utils/authorize");
 router.post("/", authorize(["admin"]), companyController.createCompany);
 router.get("/:id", authorize(["admin"]), companyController.getCompanyById);
 router.get("/", authorize(["admin"]), companyController.getAllCompanies);
-router.put("/:id", authorize(["admin"]), companyController.updateCompany);
+router.patch("/:id", authorize(["admin"]), companyController.updateCompany);
 router.delete("/:id", authorize(["admin"]), companyController.deleteCompany);
 
 module.exports = router;

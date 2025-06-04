@@ -48,16 +48,11 @@ async function getAllProducts(req, res) {
 async function updateProduct(req, res) {
   try {
     const productId = req.params.id;
-    const { company_id, name } = req.body;
-    if (!company_id || !name) {
-      return res
-        .status(400)
-        .json({ message: "업체 ID와 상품 이름은 필수입니다." });
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ message: "상품 이름은 필수입니다." });
     }
-    const updated = await ProductModel.updateProduct(productId, {
-      company_id,
-      name,
-    });
+    const updated = await ProductModel.updateProduct(productId, { name });
     if (!updated) {
       return res
         .status(404)
