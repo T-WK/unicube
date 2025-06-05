@@ -21,6 +21,8 @@
   font-family: "SUITE", sans-serif;
   text-align: center;
   width: 75%;
+  max-width: 800px;
+  min-width: 250px;
   aspect-ratio: 5/1;
   color: #292e1e;
   padding: 0.5rem 1.5rem;
@@ -71,6 +73,8 @@
   font-family: "SUITE", sans-serif;
   text-align: center;
   width: 75%;
+  max-width: 800px;
+  min-width: 250px;
   aspect-ratio: 5/1;
   color: #292e1e;
   padding: 0.5rem 1.5rem;
@@ -101,6 +105,8 @@
   font-family: "SUITE", sans-serif;
   text-align: center;
   width: 75%;
+  max-width: 800px;
+  min-width: 250px;
   aspect-ratio: 5/1;
   color: #292e1e;
   padding: 0.5rem 1.5rem;
@@ -141,7 +147,6 @@
 }
 
 .label-div {
-  z-index: 5000;
   border-radius: 22px;
   width: auto;
   height: auto;
@@ -151,6 +156,9 @@
   align-items: center;
   justify-content: center;
   background-color: #f9dc5c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
@@ -204,6 +212,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
   position: relative;
   border: 2px solid #948b89;
   border-radius: 22px;
@@ -321,6 +330,11 @@
   background-color: white;
 }
 
+@media (max-width: 640px) {
+  .header-span {
+    font-size: 2rem;
+  }
+}
 .loading-backdrop {
   position: fixed;
   top: 0;

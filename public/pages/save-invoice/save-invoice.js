@@ -1,6 +1,6 @@
 $(document).on("click", "#add-button", function () {
   const $component = $(
-    '<div class="component-container margin-container"></div>',
+    '<div class="component-container flex-container margin-container"></div>',
   );
   // 1. HTML을 불러온다
   $component.load(

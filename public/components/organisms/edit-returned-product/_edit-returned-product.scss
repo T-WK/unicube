@@ -1,0 +1,76 @@
+@use "../../molecules/dropdown/dropdown";
+@use "../../atoms/Label/label";
+@use "../../molecules/number-spinner/number-spinner";
+@use "../../molecules/placeholder-input/placeholder-input";
+
+@use "../../../scss/abstracts/variables" as va;
+
+.product-edit-container {
+  background-color: white;
+
+  border: va.$border;
+  border-radius: va.$border-radius;
+  border-color: va.$yellow-color;
+
+  padding: 20px;
+  width: 70%;
+  min-width: 435px;
+
+  .dropdown {
+    .dropdown-label {
+      font-size: 1.5rem;
+    }
+  }
+
+  .number-container {
+    width: va.$big-width;
+
+    .spinner-container {
+      width: 50%;
+    }
+    .label-div {
+      width: 50%;
+    }
+  }
+
+  .container1 {
+    width: 50%;
+  }
+  .container2 {
+    width: 50%;
+  }
+}
+
+.number-container {
+  width: va.$big-width;
+  margin: 0 auto;
+}
+
+.margin-top20 {
+  margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .product-edit-container {
+    width: 95%;
+
+    .dropdown {
+      .dropdown-label {
+        font-size: 1.25rem;
+      }
+    }
+
+    .spinner-input {
+      font-size: 1.25rem;
+    }
+
+    .number-container {
+      .spinner-container {
+        width: 90%;
+      }
+      .label-div {
+        width: 70%;
+      }
+    }
+  }
+}

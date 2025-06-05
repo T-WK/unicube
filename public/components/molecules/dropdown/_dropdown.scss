@@ -1,12 +1,22 @@
 @use "../../../scss/abstracts/variables" as va;
 @use "../../../scss/abstracts/mixins" as mixins;
 
+.dropdown-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
 .dropdown {
   display: flex;
   justify-content: center;
   align-items: center;
 
+  background-color: white;
+
   width: va.$big-width;
+  max-width: va.$big-max-width;
+  min-width: va.$big-min-width;
   aspect-ratio: 5 / 1;
 
   position: relative;
@@ -26,6 +36,12 @@
 
   &.red {
     outline-color: va.$red-color;
+  }
+
+  @media (max-width: 430px) {
+    .dropdown-label {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -100,6 +116,10 @@ ul li {
   overflow-y: auto;
 
   margin-top: 10px;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
 
   background-color: va.$white-color;
 

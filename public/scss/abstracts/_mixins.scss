@@ -22,6 +22,8 @@
   text-align: center;
 
   width: va.$button-widht;
+  max-width: va.$big-max-width;
+  min-width: va.$big-min-width;
   aspect-ratio: 5/1;
 
   color: va.$black-color;

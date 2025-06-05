@@ -1,26 +1,39 @@
-<div
-  id="placeholder-choice-product-name"
-  class="dropdown-container component-container flex-container"
-  data-component-url="/components/molecules/dropdown/dropdown.html"></div>
-<div class="flex-container">
+<div class="product-edit-container">
+  <!-- 드롭다운 -->
   <div
-    id="label-returned-quantity"
-    class="label-container component-container flex-container"
-    data-component-url="/components/atoms/Label/label.html"></div>
+    id="placeholder-choice-product-name"
+    class="dropdown-container component-container flex-container"
+    data-component-url="/components/molecules/dropdown/dropdown.html"></div>
+
+  <!-- 입고수량 컨테이너 -->
+  <div class="flex-container number-container margin-top20">
+    <!-- 라벨 -->
+    <div
+      id="label-returned-quantity"
+      class="container1 component-container flex-container"
+      data-component-url="/components/atoms/Label/label.html"></div>
+    <!-- 넘버 스피너 -->
+    <div
+      class="container2 component-container flex-container"
+      data-component-url="/components/molecules/number-spinner/number-spinner.html"></div>
+  </div>
+
+  <!-- 상품화가능 수량 컨테이너 -->
+  <div class="flex-container number-container margin-top20">
+    <!-- 라벨 -->
+    <div
+      id="label-resalable-quantity"
+      class="container1 component-container flex-container"
+      data-component-url="/components/atoms/Label/label.html"></div>
+    <!-- 넘버스피너 -->
+    <div
+      class="container2 component-container flex-container"
+      data-component-url="/components/molecules/number-spinner/number-spinner.html"></div>
+  </div>
+
+  <!-- 메모 -->
   <div
-    class="number-spinner-container component-container"
-    data-component-url="/components/molecules/number-spinner/number-spinner.html"></div>
+    id="placeholder-note"
+    class="component-container flex-container margin-top20"
+    data-component-url="/components/molecules/placeholder-input/placeholder-input.html"></div>
 </div>
-<div class="flex-container">
-  <div
-    id="label-resalable-quantity"
-    class="label-container component-container flex-container"
-    data-component-url="/components/atoms/Label/label.html"></div>
-  <div
-    class="number-spinner-container component-container flex-container"
-    data-component-url="/components/molecules/number-spinner/number-spinner.html"></div>
-</div>
-<div
-  id="placeholder-note"
-  class="component-container flex-container"
-  data-component-url="/components/molecules/placeholder-input/placeholder-input.html"></div>

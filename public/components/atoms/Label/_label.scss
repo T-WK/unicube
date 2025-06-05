@@ -2,7 +2,7 @@
 @use "../../../scss/abstracts/variables" as va;
 
 .label-div {
-  z-index: 5000;
+  // z-index: 3000;
   border-radius: va.$border-radius;
   width: auto;
   height: auto;
@@ -14,4 +14,8 @@
   justify-content: center;
 
   background-color: va.$yellow-color;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
