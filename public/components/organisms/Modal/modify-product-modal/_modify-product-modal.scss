@@ -1,18 +1,18 @@
 @use "../../../molecules/page-title/page-title";
-@use "../../../molecules/dropdown/dropdown";
+// @use "../../../molecules/dropdown/dropdown";
 @use "../../../atoms/Button/button";
 @use "../../../molecules/placeholder-input/placeholder-input";
 @use "../../../../scss/components/modal";
 
 @use "../../../../scss/abstracts/variables" as va;
 
-.dropdown {
-  width: 100%;
-}
+// .dropdown {
+//   width: 100%;
+// }
 
-.dropdown-container {
-  width: va.$big-width;
-}
+// .dropdown-container {
+//   width: va.$big-width;
+// }
 
 .button-container {
   width: 100%;
