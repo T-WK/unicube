@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="/css/main.css"
+      rel="stylesheet" />
+    <link
+      href="/pages/invoice-chart/invoice-chart.css"
+      rel="stylesheet" />
+
+    <title>반품 상태 차트 </title>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header
+      id="header-title"
+      class="component-container"
+      data-component-url="/components/organisms/Header/header.html">
+    </header>
+    <br />
+    <main>
+      <h1 class="text-2xl font-bold mb-4">송장 조회 · 검색</h1>
+
+      <!-- 검색·필터 바 -->
+      <div
+        class="flex flex-wrap items-end gap-4 mb-6 bg-white p-4 rounded-lg shadow">
+        <!-- 시작일 -->
+        <div>
+          <label
+            for="dateFrom"
+            class="block text-sm font-medium text-gray-700"
+            >시작일</label
+          >
+          <input
+            id="dateFrom"
+            type="date"
+            class="mt-1 block w-40 px-3 py-2 border rounded-md focus:ring-indigo-500" />
+        </div>
+        <!-- 종료일 -->
+        <div>
+          <label
+            for="dateTo"
+            class="block text-sm font-medium text-gray-700"
+            >종료일</label
+          >
+          <input
+            id="dateTo"
+            type="date"
+            class="mt-1 block w-40 px-3 py-2 border rounded-md focus:ring-indigo-500" />
+        </div>
+        <!-- 키워드 -->
+        <div class="flex-1 min-w-[200px]">
+          <label
+            for="keyword"
+            class="block text-sm font-medium text-gray-700"
+            >고객·송장번호 검색</label
+          >
+          <input
+            id="keyword"
+            type="text"
+            placeholder="홍길동 또는 1234-5678-9012"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:ring-indigo-500" />
+        </div>
+        <!-- 가능여부 -->
+        <div>
+          <label
+            for="availabilityFilter"
+            class="block text-sm font-medium text-gray-700"
+            >상품화가능여부</label
+          >
+          <select
+            id="availabilityFilter"
+            class="mt-1 block w-32 px-3 py-2 border rounded-md focus:ring-indigo-500">
+            <option value="">전체</option>
+            <option value="가능">가능</option>
+            <option value="불가능">불가능</option>
+            <option value="확인">확인</option>
+          </select>
+        </div>
+        <!-- 검색 버튼 -->
+        <div>
+          <button
+            id="searchBtn"
+            class="px-5 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+            검색
+          </button>
+        </div>
+        <!-- 엑셀 내보내기 버튼 -->
+        <div>
+          <button
+            id="exportBtn"
+            class="px-5 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+            엑셀 내보내기
+          </button>
+        </div>
+      </div>
+
+      <!-- 결과 테이블 -->
+      <div class="overflow-x-auto bg-white rounded-lg shadow ">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                ID
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                고객이름
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                전화번호
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                송장번호
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                제품명
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                상품화가능여부
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                생성일
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                액션
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            id="invoiceTableBody"
+            class="bg-white divide-y divide-gray-200">
+            <!-- JS 동적 생성 -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <nav
+        id="pagination"
+        class="flex justify-center gap-2 mt-4"></nav>
+    </main>
+    <!-- 푸터 -->
+    <br />
+    <footer
+      class="component-container"
+      data-component-url="/components/organisms/Footer/footer.html">
+    </footer>
+
+    <div
+      id="loadingIndicator"
+      style="display: none">
+      <div class="loading-backdrop">
+        <div class="loading-text">처리 중입니다...</div>
+      </div>
+    </div>
+
+    <script src="/jQuery/init-component-labels.js"></script>
+    <script src="/jQuery/component-loader.js"></script>
+    <script src="/jQuery/component-click-events.js"></script>
+
+    <script src="/pages/ocr/ocr.js"></script>
+  </body>
+</html>

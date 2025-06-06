@@ -32,4 +32,10 @@ router.get("/product", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/pages/product/product.html"));
 });
 
+router.get("/search", (req, res) => {
+  //express 앱(app)을 넣고, root directory에 오면,
+  res.sendFile(path.join(__dirname, "../../public/pages/invoice-chart/invoice-chart.html"));
+});
+
+
 module.exports = router;
