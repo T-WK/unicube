@@ -74,22 +74,7 @@
             placeholder="홍길동 또는 1234-5678-9012"
             class="mt-1 block w-full px-3 py-2 border rounded-md focus:ring-indigo-500" />
         </div>
-        <!-- 가능여부 -->
-        <div>
-          <label
-            for="availabilityFilter"
-            class="block text-sm font-medium text-gray-700"
-            >상품화가능여부</label
-          >
-          <select
-            id="availabilityFilter"
-            class="mt-1 block w-32 px-3 py-2 border rounded-md focus:ring-indigo-500">
-            <option value="">전체</option>
-            <option value="가능">가능</option>
-            <option value="불가능">불가능</option>
-            <option value="확인">확인</option>
-          </select>
-        </div>
+        
         <!-- 검색 버튼 -->
         <div>
           <button
@@ -135,7 +120,11 @@
               </th>
               <th
                 class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
-                상품화가능여부
+                입고수량
+              </th>
+              <th
+                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                가능수량
               </th>
               <th
                 class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
