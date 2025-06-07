@@ -1,7 +1,7 @@
 $("#data-processing-page-access-button").on("click", function () {
   const $loading = $("#loadingIndicator");
   console.log($loading.length); // 이게 0이면 선택 실패
-
+  const bashPath = window.location.pathname.split("/")[1];
   const fileInput = document.getElementById("photoFile");
 
   if (!fileInput.files) {
@@ -18,14 +18,14 @@ $("#data-processing-page-access-button").on("click", function () {
       const base64Image = e.target.result;
 
       $.ajax({
-        url: "/admin/api/ocr",
+        url: `/${bashPath}/api/ocr`,
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify({ image: base64Image }),
         success: function (response) {
           console.log("업로드 성공:", response);
           sessionStorage.setItem("ocrResult", JSON.stringify(response));
-          window.location.href = "/admin/invoice";
+          window.location.href = `/${bashPath}/invoice`;
         },
         error: function (xhr, status, error) {
           console.error("업로드 실패:", error);

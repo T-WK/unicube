@@ -2,8 +2,9 @@ $(document).ready(function () {
   const $tbody = $("#invoiceTableBody");
   console.log($("modify-company-modal-container"));
   $("#modify-company-modal-container").addClass("hidden").hide();
+  const bashPath = window.location.pathname.split("/")[1];
   $.ajax({
-    url: "/admin/api/company", // ← 필요 시 주소 수정
+    url: `/${bashPath}/api/company`, // ← 필요 시 주소 수정
     method: "GET",
     dataType: "json",
     success: function (data) {
@@ -25,7 +26,7 @@ $(document).ready(function () {
         const id = $(this).data("id");
 
         $.ajax({
-          url: `/admin/api/company/${id}`,
+          url: `/${bashPath}/api/company/${id}`,
           method: "GET",
           dataType: "json",
           success: function (company) {
