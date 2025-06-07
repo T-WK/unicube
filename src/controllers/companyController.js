@@ -36,6 +36,24 @@ async function getCompanyById(req, res) {
   }
 }
 
+async function getCompanyByName(req, res) {
+  try {
+    const { name } = req.query;
+    if (!name) {
+      // name이 비어 있으면 전체 조회
+      const result = await CompanyModel.findAllCompanies();
+      return res.json(result);
+    } else {
+      // 검색어가 있으면 검색 조회
+      const result = await CompanyModel.findCompanyByName(name);
+      return res.json(result);
+    }
+  } catch (error) {
+    console.error("업체 단건 조회 컨트롤러 오류:", error);
+    res.status(500).json({ message: "업체 조회 중 오류가 발생했습니다." });
+  }
+}
+
 // 업체 리스트 조회
 async function getAllCompanies(req, res) {
   try {
@@ -94,6 +112,7 @@ async function deleteCompany(req, res) {
 module.exports = {
   createCompany,
   getCompanyById,
+  getCompanyByName,
   getAllCompanies,
   updateCompany,
   deleteCompany,

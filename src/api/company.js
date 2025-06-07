@@ -5,6 +5,7 @@ const companyController = require("../controllers/companyController");
 const { authorize } = require("../utils/authorize");
 
 router.post("/", authorize(["admin"]), companyController.createCompany);
+router.get("/search", authorize(["admin"]), companyController.getCompanyByName);
 router.get("/:id", authorize(["admin"]), companyController.getCompanyById);
 router.get("/", authorize(["admin"]), companyController.getAllCompanies);
 router.patch("/:id", authorize(["admin"]), companyController.updateCompany);

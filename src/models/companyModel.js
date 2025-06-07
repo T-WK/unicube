@@ -29,6 +29,21 @@ async function findCompanyById(id) {
   }
 }
 
+async function findCompanyByName(name) {
+  try {
+    const [rows] = await pool.execute(
+      `SELECT id, name, access_token, note, created_at, updated_at
+       FROM company
+       WHERE name LIKE ? AND deleted_at IS NULL`,
+      [`%${name}%`],
+    );
+    return rows || null;
+  } catch (error) {
+    console.error("업체 단건 조회 오류:", error);
+    throw error;
+  }
+}
+
 async function findAllCompanies() {
   try {
     const [rows] = await pool.execute(
@@ -96,6 +111,7 @@ async function getCompanyIdByAccessToken(accessToken) {
 module.exports = {
   insertCompany,
   findCompanyById,
+  findCompanyByName,
   findAllCompanies,
   updateCompany,
   deleteCompany,
