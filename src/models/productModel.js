@@ -29,6 +29,21 @@ async function findProductById(id) {
   }
 }
 
+async function findProductByName(name) {
+  try {
+    const [rows] = await pool.execute(
+      `SELECT id, company_id, name, created_at, updated_at
+       FROM product
+       WHERE name LIKE ? AND deleted_at IS NULL`,
+      [`%${name}%`],
+    );
+    return rows || null;
+  } catch (error) {
+    console.error("상품 단건 조회 오류:", error);
+    throw error;
+  }
+}
+
 async function findAllProducts(companyId) {
   try {
     const query = `
@@ -82,6 +97,7 @@ async function deleteProduct(id) {
 module.exports = {
   insertProduct,
   findProductById,
+  findProductByName,
   findAllProducts,
   updateProduct,
   deleteProduct,

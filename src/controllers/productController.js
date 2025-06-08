@@ -32,6 +32,24 @@ async function getProductById(req, res) {
   }
 }
 
+async function getProductByName(req, res) {
+  try {
+    const { name } = req.query;
+    if (!name) {
+      // name이 비어 있으면 전체 조회
+      const result = await ProductModel.findAllProducts();
+      return res.json(result);
+    } else {
+      // 검색어가 있으면 검색 조회
+      const result = await ProductModel.findProductByName(name);
+      return res.json(result);
+    }
+  } catch (error) {
+    console.error("상품 단건 조회 컨트롤러 오류:", error);
+    res.status(500).json({ message: "상품 조회 중 오류가 발생했습니다." });
+  }
+}
+
 // 상품 리스트 조회 (특정 업체별 필터링 가능)
 async function getAllProducts(req, res) {
   try {
@@ -85,6 +103,7 @@ async function deleteProduct(req, res) {
 module.exports = {
   createProduct,
   getProductById,
+  getProductByName,
   getAllProducts,
   updateProduct,
   deleteProduct,
