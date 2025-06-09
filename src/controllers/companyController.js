@@ -1,19 +1,16 @@
 const CompanyModel = require("../models/companyModel");
-
+const { generateShortUUID } = require("../utils/hash");
 // 업체 생성
 async function createCompany(req, res) {
   try {
-    const { name, access_token, note } = req.body;
-    if (!name || !access_token) {
+    const { name, note } = req.body;
+    const uuid = generateShortUUID(name);
+    if (!name) {
       return res
         .status(400)
         .json({ message: "업체 이름과 접근 토큰은 필수입니다." });
     }
-    const companyId = await CompanyModel.insertCompany({
-      name,
-      access_token,
-      note,
-    });
+    const companyId = await CompanyModel.insertCompany({ name, uuid, note });
     res.status(201).json({ id: companyId, message: "업체가 생성되었습니다." });
   } catch (error) {
     console.error("업체 생성 컨트롤러 오류:", error);
@@ -69,17 +66,13 @@ async function getAllCompanies(req, res) {
 async function updateCompany(req, res) {
   try {
     const companyId = req.params.id;
-    const { name, access_token, note } = req.body;
-    if (!name || !access_token) {
+    const { name, note } = req.body;
+    if (!name) {
       return res
         .status(400)
         .json({ message: "업체 이름과 접근 토큰은 필수입니다." });
     }
-    const updated = await CompanyModel.updateCompany(companyId, {
-      name,
-      access_token,
-      note,
-    });
+    const updated = await CompanyModel.updateCompany(companyId, { name, note });
     if (!updated) {
       return res
         .status(404)
