@@ -5,7 +5,7 @@ async function insertCompany(companyData) {
     const [result] = await pool.execute(
       `INSERT INTO company (name, access_token, note, created_at)
        VALUES (?, ?, ?, NOW())`,
-      [companyData.name, companyData.access_token, companyData.note],
+      [companyData.name, companyData.uuid, companyData.note],
     );
     return result.insertId;
   } catch (error) {
@@ -64,11 +64,10 @@ async function updateCompany(id, companyData) {
     const [result] = await pool.execute(
       `UPDATE company
        SET name = ?,
-           access_token = ?,
            note = ?,
            updated_at = NOW()
        WHERE id = ? AND deleted_at IS NULL`,
-      [companyData.name, companyData.access_token, companyData.note, id],
+      [companyData.name, companyData.note, id],
     );
     return result.affectedRows > 0;
   } catch (error) {
