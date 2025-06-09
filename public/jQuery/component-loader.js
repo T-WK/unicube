@@ -40,6 +40,8 @@
                 e,
               );
             }
+
+            $el.removeAttr("data-component-attrs");
           }
 
           // 라벨 초기화 (해당 영역만)
