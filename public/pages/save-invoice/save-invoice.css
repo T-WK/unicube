@@ -82,6 +82,7 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, shadow-box 0.2s ease-in-out;
   background-color: #3423a6;
+  min-width: 0px;
   width: 80px;
   height: 40px;
 }
@@ -572,6 +573,9 @@ ul li {
 .placeholder-input.disabled {
   border-color: #948b89;
   pointer-events: none;
+}
+.placeholder-input .input {
+  width: 100%;
 }
 
 .modal {
