@@ -12,7 +12,7 @@ var labelMap = {
   "placeholder-choice-product-name": "상품 이름을 선택하세요.",
   "placeholder-choice-company": "업체를 선택하세요.",
   "placeholder-company-name": "업체 이름",
-  "placeholder-company-access-token": "업체 아이디",
+  "placeholder-company-access-token": "업체 코드",
   "placeholder-company-note": "비고",
 
   "title-ocr": "OCR 결과",
