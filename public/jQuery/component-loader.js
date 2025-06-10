@@ -17,6 +17,8 @@
       var $el = $(this);
       var url = $el.data("component-url");
 
+      var id = $el.attr("id");
+
       // 로드
       $.get(url)
         .done(function (html) {
@@ -42,6 +44,39 @@
             }
 
             $el.removeAttr("data-component-attrs");
+          }
+
+          if (id && id === "placeholder-choice-company") {
+            const bashPath = window.location.pathname.split("/")[1];
+            $ul = $el.find("ul");
+
+            $.ajax({
+              url: `/${bashPath}/api/company/`,
+              method: "GET",
+              contentType: "json",
+              success: function (data) {
+                data.forEach(function (company_info) {
+                  const $tr = $(`
+                    <li class="dropdown-item">
+                      <span id="item-id" class="hidden">${company_info.id}</span>
+                      <span class="dropdown-label">${company_info.name}</span>
+                    </li>
+                  `);
+                  $ul.append($tr);
+                });
+              },
+              error: function (xhr, status, error) {
+                console.error("업체 리스트 로드 실패:", error);
+                const $tr = $(`
+                  <li class="dropdown-item">
+                    <span id="item-id" class="hidden">-1</span>
+                    <span class="dropdown-label">업체 불러오기 실패</span>
+                  </li>
+                `);
+                $ul.append($tr);
+              },
+            });
+            // $el.find("ul").
           }
 
           // 라벨 초기화 (해당 영역만)

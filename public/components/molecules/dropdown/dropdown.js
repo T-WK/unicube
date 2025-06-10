@@ -46,8 +46,10 @@
     var $btn = $container.find(".dropdown");
     var $menu = $container.find(".dropdown-contents");
 
-    var itemText = $item.find("span").text();
+    var itemText = $item.find(".dropdown-label").text();
+    var itemID = $item.find("#item-id").text();
     $btn.find(".dropdown-label").text(itemText);
+    $btn.find("#item-id").text(itemID);
 
     // 메뉴 닫기 & 화살표 원복
     $menu.addClass("hidden");
