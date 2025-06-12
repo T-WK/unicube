@@ -178,7 +178,7 @@
   left: 85%;
   top: -5%;
   border-radius: 50%;
-  transition: border-color 0.2s ease-in-out box-shadow 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 .delete-button-container.focused {
   box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
@@ -244,6 +244,11 @@
   display: none;
 }
 
+@media (max-width: 640px) {
+  .labeled-image {
+    width: 75%;
+  }
+}
 .page-title-container {
   display: flex;
   justify-content: center;
@@ -308,6 +313,8 @@
   background-size: contain;
   width: 120px;
   aspect-ratio: 1;
+  margin: 15px;
+  margin-left: 0px;
 }
 
 .hamburger-menu {
@@ -323,12 +330,11 @@
   border: none;
   width: 100px;
   aspect-ratio: 1;
-  transition: box-shadow 0.2s ease-in-out background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 .hamburger-menu:hover {
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(41, 46, 30, 0.5);
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 640px) {

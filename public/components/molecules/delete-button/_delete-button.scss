@@ -11,7 +11,9 @@
 
   border-radius: 50%;
 
-  transition: border-color va.$transition box-shadow va.$transition;
+  transition:
+    border-color va.$transition,
+    box-shadow va.$transition;
 
   &.focused {
     box-shadow: va.$box-shadow;

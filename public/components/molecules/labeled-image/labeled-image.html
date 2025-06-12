@@ -1,10 +1,9 @@
 <div class="labeled-image">
   <!-- img -->
-  <div
-    class="preview-image-container component-container"
-    data-component-url="/components/atoms/Image/image.html"
-    data-component-attrs='{"src":"/images/camera.png","alt":"카메라 아이콘"}'
-    style="display: flex; align-items: center; justify-content: center"></div>
+  <img
+    class="image"
+    src="/images/camera.png"
+    alt="카메라 아이콘" />
   <input
     type="file"
     id="photoFile"
@@ -17,7 +16,7 @@
     data-component-url="/components/atoms/Label/label.html"></div>
   <!-- button: 이미지 제거 -->
   <div
+    id="cancel-button"
     class="component-container hidden"
     data-component-url="/components/molecules/delete-button/delete-button.html"></div>
 </div>
-<script src="/components/molecules/labeled-image/labeled-image.js"></script>

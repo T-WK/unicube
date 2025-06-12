@@ -17,8 +17,10 @@
   max-width: va.$big-max-width;
   min-width: va.$big-min-width;
 
-  transition: border-color va.$transition border-width va.$transition box-shadow
-    va.$transition;
+  transition:
+    border-color va.$transition,
+    border-width va.$transition,
+    box-shadow va.$transition;
 
   &:focus-within {
     border-color: va.$input-focus-border-color;
@@ -39,4 +41,12 @@
 
 .labeled-input .input {
   border-radius: va.$border-radius;
+}
+
+@media (max-width: 640px) {
+  .labeled-input {
+    .input {
+      font-size: 1rem;
+    }
+  }
 }

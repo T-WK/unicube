@@ -134,6 +134,12 @@ ul li {
   &.hidden {
     display: none;
   }
+
+  @media (max-width: 430px) {
+    .dropdown-label {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .dropdown-item {

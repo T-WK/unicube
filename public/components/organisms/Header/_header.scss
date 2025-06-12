@@ -38,6 +38,8 @@
 
   width: 120px;
   aspect-ratio: 1;
+  margin: 15px;
+  margin-left: 0px;
 }
 
 .hamburger-menu {
@@ -57,12 +59,11 @@
   width: 100px;
   aspect-ratio: 1;
 
-  transition: box-shadow va.$transition background-color va.$transition;
+  transition: background-color va.$transition;
 
   &:hover {
     cursor: pointer;
-    box-shadow: va.$box-shadow;
-    background-color: white;
+    background-color: rgba($color: #000, $alpha: 0.1);
   }
 }
 

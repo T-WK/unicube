@@ -16,7 +16,7 @@ $("#data-processing-page-access-button").on("click", function () {
 
     reader.onload = function (e) {
       const base64Image = e.target.result;
-
+      sessionStorage.setItem("invoice_base64Image", base64Image);
       $.ajax({
         url: `/${bashPath}/api/ocr`,
         method: "POST",

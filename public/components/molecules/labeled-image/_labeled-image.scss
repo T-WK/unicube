@@ -1,5 +1,5 @@
 @use "../../atoms/Label/label";
-@use "../../atoms/Image/image";
+@use "../../../scss/components/image" as image;
 @use "../../molecules/delete-button/delete-button";
 
 @use "../../../scss/abstracts/variables" as va;
@@ -43,4 +43,10 @@
 
 .component-container .hidden {
   display: none;
+}
+
+@media (max-width: 640px) {
+  .labeled-image {
+    width: va.$big-width;
+  }
 }
