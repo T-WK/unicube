@@ -787,6 +787,7 @@ input[type=number] {
 
 .textarea {
   font-weight: 400;
+  font-size: 1.5rem;
   width: 100%;
   height: 100%;
   border: none;
@@ -797,6 +798,11 @@ input[type=number] {
   font-family: "SUITE";
   font-weight: 400;
   src: url("/fonts/SUITE-SemiBold.woff2") format("woff2");
+}
+@media (max-width: 430px) {
+  .textarea {
+    font-size: 1rem;
+  }
 }
 
 .product-edit-container {
