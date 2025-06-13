@@ -94,6 +94,24 @@ async function deleteProduct(id) {
   }
 }
 
+async function findProductWithCompany(name) {
+  try {
+    const [rows] = await pool.execute(
+      `
+    SELECT p.id AS product_id, p.company_id, p.name,
+    c.id, c.name AS company_name, c.access_token, c.note
+    FROM product p
+    JOIN company c ON p.company_id = c.id
+    WHERE p.name LIKE ? AND p.deleted_at IS NULL AND c.deleted_at IS NULL`,
+      [`%${name}%`],
+    );
+    return rows || null;
+  } catch (error) {
+    console.error("상품 및 업체 조회 오류:", error);
+    throw error;
+  }
+}
+
 module.exports = {
   insertProduct,
   findProductById,
@@ -101,4 +119,5 @@ module.exports = {
   findAllProducts,
   updateProduct,
   deleteProduct,
+  findProductWithCompany,
 };

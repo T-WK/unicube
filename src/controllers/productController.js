@@ -100,6 +100,24 @@ async function deleteProduct(req, res) {
   }
 }
 
+async function getProductWithCompany(req, res) {
+  try {
+    const { name } = req.query;
+    if (!name) {
+      return res.status(400).json({ message: "상품 이름은 필수입니다." });
+    }
+    const product = await ProductModel.findProductWithCompany(name);
+    if (!product) {
+      return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error("상품 및 업체 조회 컨트롤러 오류:", error);
+    res
+      .status(500)
+      .json({ message: "상품 및 업체 조회 중 오류가 발생했습니다." });
+  }
+}
 module.exports = {
   createProduct,
   getProductById,
@@ -107,4 +125,5 @@ module.exports = {
   getAllProducts,
   updateProduct,
   deleteProduct,
+  getProductWithCompany,
 };
