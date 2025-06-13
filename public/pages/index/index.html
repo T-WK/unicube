@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="/css/main.css"
+      rel="stylesheet" />
+    <link
+      href="/pages/index/index.css"
+      rel="stylesheet" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header
+      id="header-title"
+      class="component-container"
+      data-component-url="/components/organisms/Header/header.html">
+    </header>
+    <br />
+    <main>
+      <div
+        id="get-invoice-page-access-button"
+        class="btn-container component-container flex-container margin-container"
+        data-component-url="/components/atoms/Button/button.html"></div>
+      <div
+        id="chart-page-access-button"
+        class="btn-container component-container flex-container margin-container"
+        data-component-url="/components/atoms/Button/button.html"></div>
+      <div
+        id="product-page-access-button"
+        class="btn-container component-container flex-container margin-container"
+        data-component-url="/components/atoms/Button/button.html"></div>
+      <div
+        id="company-page-access-button"
+        class="btn-container component-container flex-container margin-container"
+        data-component-url="/components/atoms/Button/button.html"></div>
+    </main>
+    <!-- 푸터 -->
+    <footer
+      class="component-container"
+      data-component-url="/components/organisms/Footer/footer.html">
+    </footer>
+    <br />
+    <script src="/jQuery/init-component-labels.js"></script>
+    <script src="/jQuery/component-loader.js"></script>
+    <script src="/jQuery/component-click-events.js"></script>
+    <script src="/pages/index/index.js"></script>
+  </body>
+</html>
