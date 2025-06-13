@@ -43,18 +43,24 @@ $(document).on("change", "#photoFile", function () {
   }
 });
 
+// TODO: 방법이 좀 별로임. 더 좋은 방법 찾아보긴 해야함.
 $(document).on("click", "#delete-button", function () {
   const $container = $(this).parent().parent().parent();
-  var $previewImage = $container.find("img");
-  console.log($previewImage);
-  $previewImage.attr("src", "/images/camera.png");
-  console.log("test3");
-  const $fileInput = $container.find("#photoFile");
-  console.log($fileInput);
-  $fileInput.val(""); // input 초기화
-  console.log("test5");
-  const $deleteButton = $container.find("#cancel-button");
-  console.log($deleteButton);
-  $deleteButton.addClass("hidden");
-  console.log("test7");
+
+  // 이미지의 딜리트 버튼을 눌렀는가?
+  if ($container.hasClass("labeled-image")) {
+    var $previewImage = $container.find("img");
+    $previewImage.attr("src", "/images/camera.png");
+    const $fileInput = $container.find("#photoFile");
+    $fileInput.val(""); // input 초기화
+    const $deleteButton = $container.find("#cancel-button");
+    $deleteButton.addClass("hidden");
+
+    return;
+  }
+
+  if ($container.hasClass("product-edit-container")) {
+    $container.parent().remove();
+    return;
+  }
 });
