@@ -14,3 +14,9 @@ $(document).on("click", "#add-button", function () {
     },
   );
 });
+
+$(document).on("click", "#save-button", function () {
+  const invoiceNumber = $(document).find("#invoice-number").find(".input");
+  const clientName = $(document).find("#customer-name").find(".input");
+  const clientPhone = $(document).find("#customer-phone").find(".input");
+});

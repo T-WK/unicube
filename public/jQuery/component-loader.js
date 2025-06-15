@@ -158,7 +158,6 @@
             );
             if (Object.keys(ocrData).length == 0) return;
 
-            console.log("test1");
             const productName = ocrData.invoiceData.제품명;
             applyCompany(productName);
           }
@@ -184,7 +183,7 @@
       $.ajax({
         url: `/${bashPath}/api/product/search`,
         type: "GET",
-        data: { name: "test" },
+        data: { name: productName },
         success: function (product_info) {
           const matches = product_info.filter(
             (item) => item.name === productName,
@@ -198,23 +197,19 @@
             const companyID = product_info[index].company_id;
             const companyName = product_info[index].company_name;
 
-            console.log("test2");
             $dropdown
               .find(".dropdown")
               .find(".dropdown-label")
               .text(companyName);
             $dropdown.find(".dropdown").find("#company-id").text(companyID);
 
-            console.log("test", sessionStorage.getItem("selectProductCompanyId"));
           } else {
             $dropdown.find(".dropdown").addClass("red");
-            console.log("test", sessionStorage.getItem("selectProductCompanyId"));
           }
         },
         error: function (xhr, status, err) {
           console.error("에러:", err);
           $dropdown.find(".dropdown").addClass("red");
-          console.log("test", sessionStorage.getItem("selectProductCompanyId"));
         },
       });
     }
