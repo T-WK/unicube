@@ -46,17 +46,37 @@
     var $btn = $container.find(".dropdown");
     var $menu = $container.find(".dropdown-contents");
 
-    var itemText = $item.find(".dropdown-label").text();
-    var itemID = $item.find("#item-id").text();
-    $btn.find(".dropdown-label").text(itemText);
-    $btn.find("#item-id").text(itemID);
+    const itemText = $item.find(".dropdown-label").text();
+    const companyIdText = $item.find("#company-id").text();
+    const productIdText = $item.find("#product-id").text();
 
-    // 메뉴 닫기 & 화살표 원복
+    const companyId = parseInt(companyIdText, 10);
+    const productId = parseInt(productIdText, 10);
+
+    $btn.find(".dropdown-label").text(itemText);
+    $btn.find("#company-id").text(companyId);
+    $btn.find("#product-id").text(productId);
+
     $menu.addClass("hidden");
     $btn.removeClass("active");
-    $btn.removeClass("red");
     $btn.find("#dropdown-up-img").addClass("hidden");
     $btn.find("#dropdown-down-img").removeClass("hidden");
+
+    const cleanPath = window.location.pathname.replace(/\/$/, "");
+    if (cleanPath.split("/").pop() === "invoice") {
+      if ($container.parent().attr("id") === "placeholder-choice-company") {
+        const storedText = sessionStorage.getItem("selectProductCompanyId");
+        const storedId = storedText !== null ? parseInt(storedText, 10) : null;
+        if (companyId === storedId) {
+          $btn.removeClass("red");
+        } else {
+          $btn.addClass("red");
+        }
+      } else {
+        sessionStorage.setItem("selectProductCompanyId", companyId.toString());
+        $btn.removeClass("red");
+      }
+    }
   });
 
   // 3) 화면 아무 곳이나(다른 영역) 클릭 시 모든 메뉴 닫기

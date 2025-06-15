@@ -169,7 +169,7 @@ $(document).ready(function () {
   // 추가 버튼 클릭 시
   $(document).on("click", "#add-button .button", function () {
     const name = $("#placeholder-product-name input").val().trim();
-    const companyID = $("#placeholder-choice-company .dropdown #item-id")
+    const companyID = $("#placeholder-choice-company .dropdown #company-id")
       .text()
       .trim();
     const bashPath = window.location.pathname.split("/")[1];

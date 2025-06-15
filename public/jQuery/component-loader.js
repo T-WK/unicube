@@ -51,11 +51,12 @@
             const bashPath = window.location.pathname.split("/")[1];
             if (id === "placeholder-choice-company") {
               url = `/${bashPath}/api/company/`;
-              console.log("test0");
-              addDropdownItem($el, url);
+              $company_dropbox = $el;
+              addDropdownItem($company_dropbox, url);
             } else if (id === "placeholder-choice-product-name") {
               url = `/${bashPath}/api/product/`;
-              addDropdownItem($el, url);
+              $product_dropbox = $el;
+              addDropdownItem($product_dropbox, url);
             }
           }
 
@@ -65,8 +66,6 @@
           if (cleanPath.split("/").pop() === "invoice") {
             // invoice 페이지에서 상품 정보란 추가하기
             if (id !== null && id === "add-button") {
-              console.log("test");
-              console.log($el.find(".button"));
               $el.find(".button").click();
             }
 
@@ -100,17 +99,26 @@
         method: "GET",
         contentType: "json",
         success: function (data) {
-          var nameArr = [];
           data.forEach(function (item_info) {
-            const $tr = $(`
-              <li class="dropdown-item">
-                <span id="item-id" class="hidden">${item_info.id}</span>
-                <span class="dropdown-label">${item_info.name}</span>
-              </li>
-            `);
-            $ul.append($tr);
-
-            nameArr.push(item_info.name);
+            if (url === `/${bashPath}/api/product/`) {
+              const $tr = $(`
+                <li class="dropdown-item">
+                  <span id="company-id" class="hidden">${item_info.company_id}</span>
+                  <span id="product-id" class="hidden">${item_info.id}</span>
+                  <span class="dropdown-label">${item_info.name}</span>
+                </li>
+              `);
+              $ul.append($tr);
+            } else if (url === `/${bashPath}/api/company/`) {
+              const $tr = $(`
+                <li class="dropdown-item">
+                  <span id="company-id" class="hidden">${item_info.id}</span>
+                  <span id="product-id" class="hidden">-1</span>
+                  <span class="dropdown-label">${item_info.name}</span>
+                </li>
+              `);
+              $ul.append($tr);
+            }
           });
 
           const cleanPath = window.location.pathname.replace(/\/$/, "");
@@ -125,23 +133,88 @@
             if (Object.keys(ocrData).length == 0) return;
 
             const productName = ocrData.invoiceData.제품명;
-            if (nameArr.includes(productName)) {
-              var $label = $el.find(".dropdown").find(".dropdown-label");
-              $label.text(productName);
+            const index = data.findIndex((item) => item.name === productName);
+            if (index > -1) {
+              $el.find(".dropdown").find(".dropdown-label").text(productName);
+              $el
+                .find(".dropdown")
+                .find("#company-id")
+                .text(data[index].company_id);
+              $el.find(".dropdown").find("#product-id").text(data[index].id);
+
+              sessionStorage.setItem("selectProductCompanyId", data[index].company_id.toString());
             } else {
               $el.find(".dropdown").addClass("red");
             }
+          }
+
+          // invoice 페이지 이면서 회사 드롭박스를 만든 후 ocr데이터에 있는 상품의 회사를 찾기 위함.
+          else if (
+            cleanPath.split("/").pop() === "invoice" &&
+            url === `/${bashPath}/api/company/`
+          ) {
+            const ocrData = JSON.parse(
+              sessionStorage.getItem("ocrResult") || "{}",
+            );
+            if (Object.keys(ocrData).length == 0) return;
+
+            console.log("test1");
+            const productName = ocrData.invoiceData.제품명;
+            applyCompany(productName);
           }
         },
         error: function (xhr, status, error) {
           console.error("업체 리스트 로드 실패:", error);
           const $tr = $(`
             <li class="dropdown-item">
-              <span id="item-id" class="hidden">-1</span>
+              <span id="company-id" class="hidden">-1</span>
+              <span id="product-id" class="hidden">-1</span>
               <span class="dropdown-label">업체 불러오기 실패</span>
             </li>
           `);
           $ul.append($tr);
+        },
+      });
+    }
+
+    function applyCompany(productName) {
+      $dropdown = $(document).find("#placeholder-choice-company");
+      const bashPath = window.location.pathname.split("/")[1];
+
+      $.ajax({
+        url: `/${bashPath}/api/product/search`,
+        type: "GET",
+        data: { name: "test" },
+        success: function (product_info) {
+          const matches = product_info.filter(
+            (item) => item.name === productName,
+          );
+
+          if (matches.length == 1) {
+            const index = product_info.findIndex(
+              (item) => item.name === productName,
+            );
+
+            const companyID = product_info[index].company_id;
+            const companyName = product_info[index].company_name;
+
+            console.log("test2");
+            $dropdown
+              .find(".dropdown")
+              .find(".dropdown-label")
+              .text(companyName);
+            $dropdown.find(".dropdown").find("#company-id").text(companyID);
+
+            console.log("test", sessionStorage.getItem("selectProductCompanyId"));
+          } else {
+            $dropdown.find(".dropdown").addClass("red");
+            console.log("test", sessionStorage.getItem("selectProductCompanyId"));
+          }
+        },
+        error: function (xhr, status, err) {
+          console.error("에러:", err);
+          $dropdown.find(".dropdown").addClass("red");
+          console.log("test", sessionStorage.getItem("selectProductCompanyId"));
         },
       });
     }
