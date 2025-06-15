@@ -61,11 +61,19 @@
 
           const path = window.location.pathname;
           const cleanPath = path.replace(/\/$/, "");
-          if (
-            cleanPath.split("/").pop() === "invoice" &&
-            sessionStorage.getItem("ocrResult") !== null
-          ) {
-            applyOcrData($el);
+
+          if (cleanPath.split("/").pop() === "invoice") {
+            // invoice 페이지에서 상품 정보란 추가하기
+            if (id !== null && id === "add-button") {
+              console.log("test");
+              console.log($el.find(".button"));
+              $el.find(".button").click();
+            }
+
+            // invoice 페이지에 송장 정보 기입하기
+            if (sessionStorage.getItem("ocrResult") !== null) {
+              applyOcrData($el);
+            }
           }
 
           // 라벨 초기화 (해당 영역만)
@@ -92,6 +100,7 @@
         method: "GET",
         contentType: "json",
         success: function (data) {
+          var nameArr = [];
           data.forEach(function (item_info) {
             const $tr = $(`
               <li class="dropdown-item">
@@ -100,7 +109,29 @@
               </li>
             `);
             $ul.append($tr);
+
+            nameArr.push(item_info.name);
           });
+
+          const cleanPath = window.location.pathname.replace(/\/$/, "");
+          // invoice 페이지 이면서 상품 드롭박스를 만든 후 찾은 상품을 배치하기 위함.
+          if (
+            cleanPath.split("/").pop() === "invoice" &&
+            url === `/${bashPath}/api/product/`
+          ) {
+            const ocrData = JSON.parse(
+              sessionStorage.getItem("ocrResult") || "{}",
+            );
+            if (Object.keys(ocrData).length == 0) return;
+
+            const productName = ocrData.invoiceData.제품명;
+            if (nameArr.includes(productName)) {
+              var $label = $el.find(".dropdown").find(".dropdown-label");
+              $label.text(productName);
+            } else {
+              $el.find(".dropdown").addClass("red");
+            }
+          }
         },
         error: function (xhr, status, error) {
           console.error("업체 리스트 로드 실패:", error);
@@ -130,7 +161,6 @@
       } else if (id === "customer-phone") {
         $el.find("input").val(ocrData.invoiceData.전화번호);
       } else if (id === "invoice-photo") {
-        // $el.find("input").val(ocrData.invoiceData.반송송장번호);
         const img = sessionStorage.getItem("invoice_base64Image");
         if (img) {
           $("#invoice-photo img").attr("src", img);

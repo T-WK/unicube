@@ -54,6 +54,7 @@
     // 메뉴 닫기 & 화살표 원복
     $menu.addClass("hidden");
     $btn.removeClass("active");
+    $btn.removeClass("red");
     $btn.find("#dropdown-up-img").addClass("hidden");
     $btn.find("#dropdown-down-img").removeClass("hidden");
   });
