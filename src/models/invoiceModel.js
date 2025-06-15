@@ -143,7 +143,9 @@ async function findInvoiceById(id, company_id) {
   let conn;
   try {
     conn = await pool.getConnection();
-
+    if (company_id) {
+      where = `AND i.company_id = ${company_id}`;
+    }
     // 송장 데이터와 관련된 이미지 가져오기
     const [rows] = await conn.execute(
       `SELECT 
@@ -167,7 +169,7 @@ async function findInvoiceById(id, company_id) {
       FROM invoice i
       JOIN invoice_product ip ON i.id = ip.invoice_id
       JOIN product p ON ip.product_id = p.id
-      WHERE i.id = ?;`,
+      WHERE i.id = ? AND i.deleted_at IS NULL ${where} ORDER BY i.id;`,
       [id],
     );
     return rows;
@@ -179,20 +181,14 @@ async function findInvoiceById(id, company_id) {
   }
 }
 
-async function findInvoiceByQuery(
-  company_id,
-  dateFrom,
-  dateTo,
-  keyword,
-  avail,
-) {
+async function findInvoiceByQuery(company_id, dateFrom, dateTo, keyword) {
   let conn;
   try {
     conn = await pool.getConnection();
 
     const where = [],
       params = [];
-    if (company_id) {
+    if (company_id !== "0") {
       where.push("i.company_id = ?");
       params.push(company_id);
     }
@@ -207,10 +203,6 @@ async function findInvoiceByQuery(
     if (keyword) {
       where.push("(i.name LIKE ? OR i.number LIKE ?)");
       params.push(`%${keyword}%`, `%${keyword}%`);
-    }
-    if (avail) {
-      where.push("ip.resalable_quantity > 0");
-      params.push(avail);
     }
     where.push("i.deleted_at IS NULL");
 
@@ -236,7 +228,7 @@ async function findInvoiceByQuery(
         JOIN invoice_product ip ON i.id = ip.invoice_id
         JOIN product p ON ip.product_id = p.id
         ${whereSQL}
-        ORDER BY i.created_at DESC`,
+        ORDER BY i.id`,
       params,
     );
 

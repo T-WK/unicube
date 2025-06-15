@@ -1,0 +1,11 @@
+@use "../../components/atoms/Button/button";
+@use "../../components/molecules/page-title/page-title";
+@use "../../components/organisms/Header/header";
+
+main {
+  padding: 20px;
+}
+
+.btn-container button {
+  margin: 0 auto;
+}
