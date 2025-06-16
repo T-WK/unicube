@@ -228,7 +228,7 @@ async function findInvoiceByQuery(company_id, dateFrom, dateTo, keyword) {
         JOIN invoice_product ip ON i.id = ip.invoice_id
         JOIN product p ON ip.product_id = p.id
         ${whereSQL}
-        ORDER BY i.id`,
+        ORDER BY i.id DESC`,
       params,
     );
 
