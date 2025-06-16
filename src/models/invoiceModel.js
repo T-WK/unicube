@@ -143,8 +143,10 @@ async function findInvoiceById(id, company_id) {
   let conn;
   try {
     conn = await pool.getConnection();
-    if (company_id) {
+    if (company_id !== "0") {
       where = `AND i.company_id = ${company_id}`;
+    } else {
+      where = "";
     }
     // 송장 데이터와 관련된 이미지 가져오기
     const [rows] = await conn.execute(
