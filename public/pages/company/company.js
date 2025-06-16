@@ -72,7 +72,6 @@ $(document).ready(function () {
       dataType: "json",
       data: { name: $("#keyword").val() },
       success: function (data) {
-        console.log(data);
         $tbody.empty(); // 기존 테이블 내용 제거 (이거 꼭 있어야 해!)
         data.forEach(function (company_info) {
           const $tr = $(`
@@ -193,7 +192,6 @@ $(document).ready(function () {
     const name = $("#placeholder-company-name input").val().trim();
     const note = $("#placeholder-company-note textarea").val().trim();
     const bashPath = window.location.pathname.split("/")[1];
-    console.log(11);
     if (!name) {
       alert("업체 이름은 필수입니다.");
       return;

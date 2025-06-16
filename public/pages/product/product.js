@@ -64,7 +64,6 @@ $(document).ready(function () {
       dataType: "json",
       data: { name: $("#keyword").val() },
       success: function (data) {
-        console.log(data);
         $tbody.empty(); // 기존 테이블 내용 제거 (이거 꼭 있어야 해!)
         data.forEach(function (product_info) {
           const $tr = $(`

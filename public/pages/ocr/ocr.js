@@ -1,6 +1,5 @@
 $("#data-processing-page-access-button").on("click", function () {
   const $loading = $("#loadingIndicator");
-  console.log($loading.length); // 이게 0이면 선택 실패
   const bashPath = window.location.pathname.split("/")[1];
   const fileInput = document.getElementById("photoFile");
 

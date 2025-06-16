@@ -59,7 +59,6 @@ $(document).on("click", "#save-button", async function () {
       invoiceProduct: productInfos,
     };
 
-    console.log(formData);
     // 5) AJAX 전송
     const basePath = window.location.pathname.split("/")[1];
     $.ajax({
