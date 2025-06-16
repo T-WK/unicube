@@ -27,10 +27,8 @@ $(document).on("click", "#save-button", async function () {
     const clientPhone = $("#customer-phone .input").val();
 
     // 2) 이미지 src → Blob 변환
-    const invoiceImgSrc =
-      dataURLtoBlob(sessionStorage.getItem("invoice_base64Image")) || null;
-    const productImgSrc =
-      dataURLtoBlob(sessionStorage.getItem("product_base64Image")) || null;
+    const invoiceImgSrc = sessionStorage.getItem("invoice_base64Image") || null;
+    const productImgSrc = sessionStorage.getItem("product_base64Image") || null;
 
     // 3) 상품 리스트 수집
     const productInfos = [];
@@ -61,6 +59,8 @@ $(document).on("click", "#save-button", async function () {
 
     // 5) AJAX 전송
     const basePath = window.location.pathname.split("/")[1];
+    console.log(formData);
+    console.log(JSON.stringify(formData));
     $.ajax({
       url: `/${basePath}/api/invoice`,
       method: "POST",
@@ -80,26 +80,3 @@ $(document).on("click", "#save-button", async function () {
     alert("데이터 처리 중 오류가 발생했습니다.");
   }
 });
-
-/**
- * Base64 Data URL → Blob
- * @param {string} dataURL — 'data:[<mediatype>][;base64],<data>' 형태 문자열
- * @returns {Blob}
- */
-function dataURLtoBlob(dataURL) {
-  // 1) Data URL을 헤더와 순수 Base64 데이터로 분리
-  const [header, base64] = dataURL.split(",");
-  // 2) 헤더에서 MIME 타입 추출
-  const mimeMatch = header.match(/data:([^;]+);base64/);
-  const contentType = mimeMatch ? mimeMatch[1] : "";
-  // 3) atob로 디코딩 후 binary string 생성
-  const binaryString = atob(base64);
-  const len = binaryString.length;
-  // 4) Uint8Array로 변환
-  const u8arr = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    u8arr[i] = binaryString.charCodeAt(i);
-  }
-  // 5) Blob 생성
-  return new Blob([u8arr], { type: contentType });
-}
