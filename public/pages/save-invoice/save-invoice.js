@@ -1,4 +1,4 @@
-$(document).on("click", "#add-button", function () {
+$(document).on("click", "#add-product-button", function () {
   const $component = $(
     '<div class="component-container flex-container margin-container"></div>',
   );
@@ -59,14 +59,13 @@ $(document).on("click", "#save-button", async function () {
 
     // 5) AJAX 전송
     const basePath = window.location.pathname.split("/")[1];
-    console.log(formData);
-    console.log(JSON.stringify(formData));
     $.ajax({
       url: `/${basePath}/api/invoice`,
       method: "POST",
       contentType: "application/json",
       data: JSON.stringify(formData),
       success: function (res) {
+        sessionStorage.clear();
         alert("저장에 성공했습니다.");
         window.location.href = `/${basePath}/`;
       },

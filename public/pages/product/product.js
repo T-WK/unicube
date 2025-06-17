@@ -118,8 +118,8 @@ $(document).ready(function () {
     "click",
     ".modal-container #modify-button button",
     function () {
-      $productID = $('[id~="modify-modal"]').find("#product-id").text();
-      $productName = $('[id~="modify-modal"]')
+      const $productID = $('[id~="modify-modal"]').find("#product-id").text();
+      const $productName = $('[id~="modify-modal"]')
         .find("#placeholder-product-name input")
         .val();
 
@@ -146,7 +146,7 @@ $(document).ready(function () {
     "click",
     ".modal-container #delete-button button",
     function () {
-      $productID = $('[id~="modify-modal"]').find("#product-id").text();
+      const $productID = $('[id~="modify-modal"]').find("#product-id").text();
 
       $.ajax({
         url: `/${bashPath}/api/product/${$productID}`,

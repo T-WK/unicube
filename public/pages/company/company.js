@@ -135,11 +135,11 @@ $(document).ready(function () {
     "click",
     ".modal-container #modify-button button",
     function () {
-      $companyID = $('[id~="modify-modal"]').find("#company-id").text();
-      $companyName = $('[id~="modify-modal"]')
+      const $companyID = $('[id~="modify-modal"]').find("#company-id").text();
+      const $companyName = $('[id~="modify-modal"]')
         .find("#placeholder-company-name input")
         .val();
-      $companyNote = $('[id~="modify-modal"]')
+      const $companyNote = $('[id~="modify-modal"]')
         .find("#placeholder-company-note input")
         .val();
 
@@ -168,7 +168,7 @@ $(document).ready(function () {
     "click",
     ".modal-container #delete-button button",
     function () {
-      $companyID = $('[id~="modify-modal"]').find("#company-id").text();
+      const $companyID = $('[id~="modify-modal"]').find("#company-id").text();
 
       $.ajax({
         url: `/${bashPath}/api/company/${$companyID}`,

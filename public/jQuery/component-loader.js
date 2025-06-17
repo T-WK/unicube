@@ -10,7 +10,10 @@
     // 1) 이번 패스에서 처리할 대상
     var $toLoad = $root.find(".component-container[data-component-url]");
 
-    if (!$toLoad.length) return; // 없으면 그만
+    if (!$toLoad.length) return Promise.resolve(); // 없으면 그만
+
+    // 각 컴포넌트의 Promise를 모아서, 모두 끝난 뒤 resolve
+    var promises = [];
 
     // 2) 각 요소마다 URL 읽어서 AJAX 로드
     $toLoad.each(function () {
@@ -20,7 +23,7 @@
       var id = $el.attr("id");
 
       // 로드
-      $.get(url)
+      var p = $.get(url)
         .done(function (html) {
           // HTML 삽입
           $el.html(html);
@@ -65,7 +68,7 @@
 
           if (cleanPath.split("/").pop() === "invoice") {
             // invoice 페이지에서 상품 정보란 추가하기
-            if (id !== null && id === "add-button") {
+            if (id !== null && id === "add-product-button") {
               $el.find(".button").click();
             }
 
@@ -87,152 +90,153 @@
         .fail(function () {
           console.error("Component load failed:", url);
         });
+      promises.push(p);
     });
 
-    function addDropdownItem(element, url) {
-      $el = element;
-      const bashPath = window.location.pathname.split("/")[1];
-      $ul = $el.find("ul");
+    return Promise.all(promises);
+  }
 
-      $.ajax({
-        url: url,
-        method: "GET",
-        contentType: "json",
-        success: function (data) {
-          data.forEach(function (item_info) {
-            if (url === `/${bashPath}/api/product/`) {
-              const $tr = $(`
+  function addDropdownItem(element, url) {
+    const $el = element;
+    const $ul = element.find("ul");
+    const bashPath = window.location.pathname.split("/")[1];
+    $.ajax({
+      url: url,
+      method: "GET",
+      contentType: "json",
+      success: function (data) {
+        data.forEach(function (item_info) {
+          if (url === `/${bashPath}/api/product/`) {
+            const $tr = $(`
                 <li class="dropdown-item">
                   <span id="company-id" class="hidden">${item_info.company_id}</span>
                   <span id="product-id" class="hidden">${item_info.id}</span>
                   <span class="dropdown-label">${item_info.name}</span>
                 </li>
               `);
-              $ul.append($tr);
-            } else if (url === `/${bashPath}/api/company/`) {
-              const $tr = $(`
+            $ul.append($tr);
+          } else if (url === `/${bashPath}/api/company/`) {
+            const $tr = $(`
                 <li class="dropdown-item">
                   <span id="company-id" class="hidden">${item_info.id}</span>
                   <span id="product-id" class="hidden">-1</span>
                   <span class="dropdown-label">${item_info.name}</span>
                 </li>
               `);
-              $ul.append($tr);
-            }
-          });
-
-          const cleanPath = window.location.pathname.replace(/\/$/, "");
-          // invoice 페이지 이면서 상품 드롭박스를 만든 후 찾은 상품을 배치하기 위함.
-          if (
-            cleanPath.split("/").pop() === "invoice" &&
-            url === `/${bashPath}/api/product/`
-          ) {
-            const ocrData = JSON.parse(
-              sessionStorage.getItem("ocrResult") || "{}",
-            );
-            if (Object.keys(ocrData).length == 0) return;
-
-            const productName = ocrData.invoiceData.제품명;
-            const index = data.findIndex((item) => item.name === productName);
-            if (index > -1) {
-              $el.find(".dropdown").find(".dropdown-label").text(productName);
-              $el
-                .find(".dropdown")
-                .find("#company-id")
-                .text(data[index].company_id);
-              $el.find(".dropdown").find("#product-id").text(data[index].id);
-
-              sessionStorage.setItem("selectProductCompanyId", data[index].company_id.toString());
-            } else {
-              $el.find(".dropdown").addClass("red");
-            }
+            $ul.append($tr);
           }
+        });
 
-          // invoice 페이지 이면서 회사 드롭박스를 만든 후 ocr데이터에 있는 상품의 회사를 찾기 위함.
-          else if (
-            cleanPath.split("/").pop() === "invoice" &&
-            url === `/${bashPath}/api/company/`
-          ) {
-            const ocrData = JSON.parse(
-              sessionStorage.getItem("ocrResult") || "{}",
+        const cleanPath = window.location.pathname.replace(/\/$/, "");
+        // invoice 페이지 이면서 상품 드롭박스를 만든 후 찾은 상품을 배치하기 위함.
+        if (
+          cleanPath.split("/").pop() === "invoice" &&
+          url === `/${bashPath}/api/product/`
+        ) {
+          const ocrData = JSON.parse(
+            sessionStorage.getItem("ocrResult") || "{}",
+          );
+          if (Object.keys(ocrData).length == 0) return;
+
+          const productName = ocrData.invoiceData.제품명;
+          const index = data.findIndex((item) => item.name === productName);
+          if (index > -1) {
+            $el.find(".dropdown").find(".dropdown-label").text(productName);
+            $el
+              .find(".dropdown")
+              .find("#company-id")
+              .text(data[index].company_id);
+            $el.find(".dropdown").find("#product-id").text(data[index].id);
+
+            sessionStorage.setItem(
+              "selectProductCompanyId",
+              data[index].company_id.toString(),
             );
-            if (Object.keys(ocrData).length == 0) return;
-
-            const productName = ocrData.invoiceData.제품명;
-            applyCompany(productName);
+          } else {
+            $el.find(".dropdown").addClass("red");
           }
-        },
-        error: function (xhr, status, error) {
-          console.error("업체 리스트 로드 실패:", error);
-          const $tr = $(`
+        }
+
+        // invoice 페이지 이면서 회사 드롭박스를 만든 후 ocr데이터에 있는 상품의 회사를 찾기 위함.
+        else if (
+          cleanPath.split("/").pop() === "invoice" &&
+          url === `/${bashPath}/api/company/`
+        ) {
+          const ocrData = JSON.parse(
+            sessionStorage.getItem("ocrResult") || "{}",
+          );
+          if (Object.keys(ocrData).length == 0) return;
+
+          const productName = ocrData.invoiceData.제품명;
+          applyCompany(productName);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("업체 리스트 로드 실패:", error);
+        const $tr = $(`
             <li class="dropdown-item">
               <span id="company-id" class="hidden">-1</span>
               <span id="product-id" class="hidden">-1</span>
               <span class="dropdown-label">업체 불러오기 실패</span>
             </li>
           `);
-          $ul.append($tr);
-        },
-      });
-    }
+        $ul.append($tr);
+      },
+    });
+  }
 
-    function applyCompany(productName) {
-      $dropdown = $(document).find("#placeholder-choice-company");
-      const bashPath = window.location.pathname.split("/")[1];
+  function applyCompany(productName) {
+    const $dropdown = $(document).find("#placeholder-choice-company");
+    const bashPath = window.location.pathname.split("/")[1];
 
-      $.ajax({
-        url: `/${bashPath}/api/product/search`,
-        type: "GET",
-        data: { name: productName },
-        success: function (product_info) {
-          const matches = product_info.filter(
+    $.ajax({
+      url: `/${bashPath}/api/product/search`,
+      type: "GET",
+      data: { name: productName },
+      success: function (product_info) {
+        const matches = product_info.filter(
+          (item) => item.name === productName,
+        );
+
+        if (matches.length == 1) {
+          const index = product_info.findIndex(
             (item) => item.name === productName,
           );
 
-          if (matches.length == 1) {
-            const index = product_info.findIndex(
-              (item) => item.name === productName,
-            );
+          const companyID = product_info[index].company_id;
+          const companyName = product_info[index].company_name;
 
-            const companyID = product_info[index].company_id;
-            const companyName = product_info[index].company_name;
-
-            $dropdown
-              .find(".dropdown")
-              .find(".dropdown-label")
-              .text(companyName);
-            $dropdown.find(".dropdown").find("#company-id").text(companyID);
-
-          } else {
-            $dropdown.find(".dropdown").addClass("red");
-          }
-        },
-        error: function (xhr, status, err) {
-          console.error("에러:", err);
+          $dropdown.find(".dropdown").find(".dropdown-label").text(companyName);
+          $dropdown.find(".dropdown").find("#company-id").text(companyID);
+        } else {
           $dropdown.find(".dropdown").addClass("red");
-        },
-      });
-    }
-
-    function applyOcrData(element) {
-      var $el = element;
-      if ($el === null) return;
-
-      const id = $el.attr("id") || null;
-      if (id === null) return;
-
-      const ocrData = JSON.parse(sessionStorage.getItem("ocrResult") || "{}");
-      if (id === "invoice-number") {
-        $el.find("input").val(ocrData.invoiceData.반송송장번호);
-      } else if (id === "customer-name") {
-        $el.find("input").val(ocrData.invoiceData.고객이름);
-      } else if (id === "customer-phone") {
-        $el.find("input").val(ocrData.invoiceData.전화번호);
-      } else if (id === "invoice-photo") {
-        const img = sessionStorage.getItem("invoice_base64Image");
-        if (img) {
-          $("#invoice-photo img").attr("src", img);
         }
+      },
+      error: function (xhr, status, err) {
+        console.error("에러:", err);
+        $dropdown.find(".dropdown").addClass("red");
+      },
+    });
+  }
+
+  function applyOcrData(element) {
+    var $el = element;
+    if ($el === null) return;
+
+    const id = $el.attr("id") || null;
+    if (id === null) return;
+
+    const ocrData = JSON.parse(sessionStorage.getItem("ocrResult") || "{}");
+    if (id === "invoice-number") {
+      $el.find("input").val(ocrData.invoiceData.반송송장번호);
+    } else if (id === "customer-name") {
+      $el.find("input").val(ocrData.invoiceData.고객이름);
+    } else if (id === "customer-phone") {
+      $el.find("input").val(ocrData.invoiceData.전화번호);
+    } else if (id === "invoice-photo") {
+      const img = sessionStorage.getItem("invoice_base64Image");
+      if (img) {
+        $("#invoice-photo img").attr("src", img);
       }
     }
   }

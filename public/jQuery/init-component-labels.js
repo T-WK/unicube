@@ -30,6 +30,7 @@ var labelMap = {
   "product-page-access-button": "제품 관리",
   "company-page-access-button": "업체 관리",
   "add-button": "추가",
+  "add-product-button": "상품추가",
   "modify-button": "수정",
   "delete-button": "삭제",
   "save-button": "저장",

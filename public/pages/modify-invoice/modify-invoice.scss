@@ -1,0 +1,62 @@
+@use "../../components/atoms/Button/button";
+@use "../../components/molecules/labeled-image/labeled-image";
+@use "../../components/molecules/labeled-input/labeled-input";
+@use "../../components/molecules/page-title/page-title";
+@use "../../components/organisms/Header/header";
+@use "../../components/organisms/Modal/add-product-modal/add-product-modal";
+@use "../../components/organisms/Modal/modify-product-modal/modify-product-modal";
+@use "../../components/molecules/number-spinner/number-spinner";
+@use "../../components/molecules/placeholder-input/placeholder-input";
+@use "../../components/organisms/edit-returned-product/edit-returned-product";
+
+@use "../../scss/abstracts/variables" as va;
+
+.dropdown {
+  width: va.$big-width;
+}
+
+.dropdown-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.labeled-input {
+  .label {
+    font-size: 1rem;
+  }
+  .label-div {
+    min-width: 92px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-title-container {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .labeled-input {
+    .label-div {
+      margin-right: 0;
+    }
+    .label {
+      font-size: 1rem;
+      margin: auto;
+    }
+    .component-container {
+      width: 40%;
+    }
+  }
+
+  .labeled-image {
+    .label {
+      font-size: 1rem;
+    }
+    .label-div {
+      width: 50%;
+    }
+  }
+}
