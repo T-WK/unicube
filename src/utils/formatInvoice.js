@@ -24,6 +24,7 @@ function formatInvoiceRows(rows) {
       .get(id)
       .products.push({
         name: row.product_name,
+        product_id: row.product_id,
         returned_quantity: row.returned_quantity,
         resalable_quantity: row.resalable_quantity,
         note: row.note,

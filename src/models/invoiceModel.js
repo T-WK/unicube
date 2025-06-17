@@ -162,6 +162,7 @@ async function findInvoiceById(id, company_id) {
         i.updated_at,
         i.deleted_at,
 
+        ip.product_id,
         ip.returned_quantity,
         ip.resalable_quantity,
         ip.note,
