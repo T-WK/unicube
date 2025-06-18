@@ -2,7 +2,7 @@ $(document).ready(function () {
   const $tbody = $("#invoiceTableBody");
   $("#modify-company-modal-container").addClass("hidden").hide();
   const bashPath = window.location.pathname.split("/")[1];
-
+  const url = window.location.hostname;
   // 페이지 로드시 바로.
   $.ajax({
     url: `/${bashPath}/api/company`, // ← 필요 시 주소 수정
@@ -15,6 +15,9 @@ $(document).ready(function () {
             <td class="px-4 py-2 text-sm text-gray-700">${company_info.id}</td>
             <td class="px-4 py-2 text-sm text-gray-700">${company_info.name}</td>
             <td class="px-4 py-2 text-sm text-gray-700">${company_info.access_token}</td>
+            <td class="px-4 py-2 text-sm text-blue-600 cursor-pointer hover:underline copy-url" data-url="${url}/${company_info.access_token}/search">
+              ${url}/${company_info.access_token}/search
+            </td>
             <td class="px-4 py-2 text-sm text-gray-700">${company_info.note || "-"}</td>
             <td class="px-4 py-2 text-sm text-gray-700">
               <button class="text-blue-500 hover:underline view-detail-btn" data-id="${company_info.id}">보기</button>
@@ -53,6 +56,18 @@ $(document).ready(function () {
           },
         });
       });
+
+      $tbody.on("click", ".copy-url", function () {
+        const textToCopy = $(this).data("url");
+
+        navigator.clipboard.writeText(textToCopy)
+          .then(() => {
+            alert("URL이 복사되었습니다!");
+          })
+          .catch(err => {
+            console.error("복사 실패:", err);
+          });
+      })
     },
     error: function (err) {
       console.error("데이터 로딩 오류:", err);
