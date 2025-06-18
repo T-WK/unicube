@@ -19,4 +19,4 @@ app.use("/:hash", pageRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
-}); //설정된 포트 에서 이 앱을 실행한다.
+});
