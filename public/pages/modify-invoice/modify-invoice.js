@@ -154,7 +154,7 @@ $(document).on("click", "#save-button", async function () {
           parseInt($el.find("#spinner-1 .spinner-input").val(), 10) || 0,
         resalable_quantity:
           parseInt($el.find("#spinner-2 .spinner-input").val(), 10) || 0,
-        note: $el.find("#placeholder-note .textarea").text().trim() || null,
+        note: $el.find("#placeholder-note .textarea").val().trim() || null,
       });
     });
 
