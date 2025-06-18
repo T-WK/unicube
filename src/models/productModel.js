@@ -52,7 +52,7 @@ async function findAllProducts(companyId) {
       JOIN company c ON p.company_id = c.id
       WHERE p.deleted_at IS NULL
       ${companyId ? "AND p.company_id = ?" : ""}
-      ORDER BY p.created_at DESC
+      ORDER BY p.name
     `;
     const params = companyId ? [companyId] : [];
     const [rows] = await pool.execute(query, params);

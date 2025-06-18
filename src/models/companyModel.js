@@ -50,7 +50,7 @@ async function findAllCompanies() {
       `SELECT id, name, access_token, note, created_at, updated_at
        FROM company
        WHERE deleted_at IS NULL
-       ORDER BY created_at DESC`,
+       ORDER BY name`,
     );
     return rows;
   } catch (error) {

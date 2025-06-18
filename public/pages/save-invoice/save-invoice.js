@@ -22,9 +22,9 @@ $(document).on("click", "#save-button", async function () {
       $("#placeholder-choice-company .dropdown #company-id").text(),
       10,
     );
-    const invoiceNumber = $("#invoice-number .input").val();
-    const clientName = $("#customer-name .input").val();
-    const clientPhone = $("#customer-phone .input").val();
+    const invoiceNumber = $("#invoice-number .input").val().trim();
+    const clientName = $("#customer-name .input").val().trim();
+    const clientPhone = $("#customer-phone .input").val().trim();
 
     // 2) 이미지 src → Blob 변환
     const invoiceImgSrc = sessionStorage.getItem("invoice_base64Image") || null;
@@ -70,7 +70,7 @@ $(document).on("click", "#save-button", async function () {
         window.location.href = `/${basePath}/`;
       },
       error: function (xhr, status, err) {
-        console.error("저장 실패:", err);
+        console.error("저장 실패:", xhr, status, err);
         alert("저장에 실패했습니다. 다시 시도해주세요.");
       },
     });
