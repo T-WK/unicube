@@ -1,90 +1,85 @@
 $(function () {
   const basePath = window.location.pathname.split("/")[1];
-  $.ajax({
-    url: `/${basePath}/api/product`,
-    method: "GET",
-    contentType: "json",
-    success: function (products) {
-      const product_infos = products;
-      const invoiceID = window.location.pathname.split("/").pop();
-      $.ajax({
-        url: `/${basePath}/api/invoice/${invoiceID}`,
-        method: "GET",
-        contentType: "json",
-        success: function (res) {
-          const invoiceData = res.invoiceData;
+  $.when(
+    $.ajax({
+      url: `/${basePath}/api/product`,
+      method: "GET",
+      contentType: "json",
+    }),
+    $.ajax({
+      url: `/${basePath}/api/company`,
+      method: "GET",
+      contentType: "json",
+    }),
+  ).done(function (resFirst, resSecond) {
+    // resFirst, resSecond는 [데이터, 상태, jqXHR] 형태의 배열
 
-          $(
-            "#placeholder-choice-company .dropdown-contents .dropdown-item",
-          ).each(function () {
-            const $el = $(this);
-            const companyID = parseInt($el.find("#company-id").text(), 10);
+    const product_infos = resFirst[0];
+    const company_infos = resSecond[0];
+    const invoiceID = window.location.pathname.split("/").pop();
+    $.ajax({
+      url: `/${basePath}/api/invoice/${invoiceID}`,
+      method: "GET",
+      contentType: "json",
+      success: function (res) {
+        const invoiceData = res.invoiceData;
 
-            if (companyID == invoiceData.company_id) {
-              const companyName = $el.find(".dropdown-label").text();
+        var companyIndex = 0;
+        for (i = 0; i < company_infos.length; i++) {
+          if (company_infos[i].id == invoiceData.company_id) {
+            companyIndex = i;
+          }
+        }
 
-              $("#placeholder-choice-company .dropdown #company-id").val(
-                companyID,
-              );
-              $("#placeholder-choice-company .dropdown .dropdown-label").val(
-                companyName,
-              );
+        const $companyDropdown = $("#placeholder-choice-company .dropdown");
+        $companyDropdown
+          .find("#company-id")
+          .text(company_infos[companyIndex].id);
+        $companyDropdown
+          .find(".dropdown-label")
+          .text(company_infos[companyIndex].name);
 
-              return false;
+        $("#invoice-number .input").val(invoiceData.number);
+        $("#customer-name .input").val(invoiceData.name);
+        $("#customer-phone .input").val(invoiceData.phone);
+
+        if (invoiceData.invoiceImg !== null) {
+          sessionStorage.setItem("invoice_base64Image", invoiceData.invoiceImg);
+          $("#invoice-photo .image").attr(
+            "src",
+            "data:image/jpeg;base64," + invoiceData.invoiceImg,
+          );
+        }
+
+        if (invoiceData.productImg !== null) {
+          sessionStorage.setItem("invoice_base64Image", invoiceData.productImg);
+          $("#product-photo .image").attr(
+            "src",
+            "data:image/jpeg;base64," + invoiceData.productImg,
+          );
+        }
+
+        for (i = 0; i < invoiceData.products.length; i++) {
+          const product = invoiceData.products[i];
+          var info = {};
+          for (j = 0; j < product_infos.length; j++) {
+            if (product_infos[j].id == product.product_id) {
+              info.product_id = product.product_id;
+              info.product_name = product_infos[j].name;
+              info.company_id = product_infos[j].company_id;
+              info.company_name = product_infos[j].company_name;
+              info.returned_quantity = product.returned_quantity;
+              info.resalable_quantity = product.resalable_quantity;
+              info.note = product.note;
             }
-          });
-
-          $("#invoice-number .input").val(invoiceData.number);
-          $("#customer-name .input").val(invoiceData.name);
-          $("#customer-phone .input").val(invoiceData.phone);
-
-          if (invoiceData.invoiceImg !== null) {
-            sessionStorage.setItem(
-              "invoice_base64Image",
-              invoiceData.invoiceImg,
-            );
-            $("#invoice-photo .image").attr(
-              "src",
-              "data:image/jpeg;base64," + invoiceData.invoiceImg,
-            );
           }
-
-          if (invoiceData.productImg !== null) {
-            sessionStorage.setItem(
-              "invoice_base64Image",
-              invoiceData.productImg,
-            );
-            $("#product-photo .image").attr(
-              "src",
-              "data:image/jpeg;base64," + invoiceData.productImg,
-            );
-          }
-
-          for (i = 0; i < invoiceData.products.length; i++) {
-            const product = invoiceData.products[i];
-            var info = {};
-            for (j = 0; j < product_infos.length; j++) {
-              if (product_infos[j].id == product.product_id) {
-                info.product_id = product.product_id;
-                info.product_name = product_infos[j].name;
-                info.company_id = product_infos[j].company_id;
-                info.company_name = product_infos[j].company_name;
-                info.returned_quantity = product.returned_quantity;
-                info.resalable_quantity = product.resalable_quantity;
-                info.note = product.note;
-              }
-            }
-            addAllProductsAndThenNextStep(info, i);
-          }
-        },
-        error: function (xhr, status, err) {
-          console.log(err);
-        },
-      });
-    },
-    error: function (xhr, status, err) {
-      console.log(err);
-    },
+          addAllProductsAndThenNextStep(info, i);
+        }
+      },
+      error: function (xhr, status, err) {
+        console.log(err);
+      },
+    });
   });
 });
 
@@ -103,11 +98,6 @@ async function addAllProductsAndThenNextStep(product, index) {
   $container.find("#spinner-2 .spinner-input").val(product.resalable_quantity);
 
   $container.find("#placeholder-note .textarea").val(product.note || "");
-
-  const $companyDropdown = $("#placeholder-choice-company .dropdown");
-  $companyDropdown.find("#company-id").text(product.company_id);
-  $companyDropdown.find("#product-id").text(product.product_id);
-  $companyDropdown.find(".dropdown-label").text(product.company_name);
 }
 
 function addComponentWithPromise() {
