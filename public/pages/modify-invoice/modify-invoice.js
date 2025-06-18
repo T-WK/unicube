@@ -43,21 +43,24 @@ $(function () {
         $("#customer-name .input").val(invoiceData.name);
         $("#customer-phone .input").val(invoiceData.phone);
 
-        if (invoiceData.invoiceImg !== null) {
-          sessionStorage.setItem("invoice_base64Image", invoiceData.invoiceImg);
-          $("#invoice-photo .image").attr(
-            "src",
-            "data:image/jpeg;base64," + invoiceData.invoiceImg,
-          );
-        }
+        try {
+          if (invoiceData.invoiceImg !== null) {
+            ``;
+            $("#invoice-photo .image").attr(
+              "src",
+              "data:image/jpeg;base64," + invoiceData.invoiceImg,
+            );
+          }
+        } catch {}
 
-        if (invoiceData.productImg !== null) {
-          sessionStorage.setItem("invoice_base64Image", invoiceData.productImg);
-          $("#product-photo .image").attr(
-            "src",
-            "data:image/jpeg;base64," + invoiceData.productImg,
-          );
-        }
+        try {
+          if (invoiceData.productImg !== null) {
+            $("#product-photo .image").attr(
+              "src",
+              "data:image/jpeg;base64," + invoiceData.productImg,
+            );
+          }
+        } catch {}
 
         for (i = 0; i < invoiceData.products.length; i++) {
           const product = invoiceData.products[i];
@@ -130,9 +133,9 @@ $(document).on("click", "#save-button", async function () {
     const clientName = $("#customer-name .input").val();
     const clientPhone = $("#customer-phone .input").val();
 
-    // 2) 이미지 src → Blob 변환
-    const invoiceImgSrc = sessionStorage.getItem("invoice_base64Image") || null;
-    const productImgSrc = sessionStorage.getItem("product_base64Image") || null;
+    // 2) 이미지 base64 데이터
+    const invoiceImgSrc = $("#invoice-photo .image").attr("src") || null;
+    const productImgSrc = $("#product-photo .image").attr("src") || null;
 
     // 3) 상품 리스트 수집
     const productInfos = [];

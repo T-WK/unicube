@@ -36,16 +36,6 @@ $(document).on("change", "#photoFile", function () {
     const reader = new FileReader();
     reader.onload = function (e) {
       const base64Image = e.target.result;
-      if ($outerDiv.parent().attr("id") === "product-photo") {
-        const maxSize = 4 * 1000 * 1000;
-        const compressedData = compressBase64ToMaxSize(e.target.result, maxSize)
-          .then((compressedDataURL) => {
-            sessionStorage.setItem("product_base64Image", compressedDataURL);
-          })
-          .catch((err) => {
-            console.error("압축 또는 저장 실패:", err);
-          });
-      }
       var $previewImage = $outerDiv.find("img");
       $previewImage.attr("src", base64Image);
       $deleteButton.removeClass("hidden");
@@ -79,61 +69,3 @@ $(document).on("click", "#delete-button", function () {
     return;
   }
 });
-
-/**
- * base64 Data URL 이미지를 받아, 최종 base64 크기가 maxBytes를 넘지 않도록
- * JPEG 퀄리티를 낮춰 압축한 base64(Data URL)를 반환
- *
- * @param {string} base64DataURL  - 'data:image/...;base64,…' 형태
- * @param {number} maxBytes       - 허용할 최대 Data URL 바이트 크기 (예: 5 * 1024 * 1024)
- * @param {number} [minQuality=0.1] - 최소 JPEG 퀄리티 (0.0 ~ 1.0)
- * @returns {Promise<string>}     - 압축된 JPEG Data URL
- */
-async function compressBase64ToMaxSize(
-  base64DataURL,
-  maxBytes,
-  minQuality = 0.1,
-) {
-  // 1) base64 → Image 로드
-  const img = await new Promise((resolve, reject) => {
-    const image = new Image();
-    image.onload = () => resolve(image);
-    image.onerror = reject;
-    image.src = base64DataURL;
-  });
-
-  // 2) 캔버스에 그리기
-  const canvas = document.createElement("canvas");
-  canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
-  const ctx = canvas.getContext("2d");
-  ctx.drawImage(img, 0, 0);
-
-  // 3) Data URL 오버헤드 고려 → Blob 목표 크기 계산
-  //    base64 길이 ≈ blobSize × 4/3
-  const maxBlobBytes = Math.floor((maxBytes * 3) / 4);
-
-  // 4) 이진 탐색으로 최적 퀄리티 찾기
-  let low = minQuality,
-    high = 1.0,
-    bestQuality = minQuality;
-
-  for (let i = 0; i < 7; i++) {
-    const q = (low + high) / 2;
-    // canvas.toBlob 은 비동기 콜백
-    const blob = await new Promise((res) =>
-      canvas.toBlob(res, "image/jpeg", q),
-    );
-    if (blob.size <= maxBlobBytes) {
-      bestQuality = q; // 이 퀄리티로는 OK
-      low = q; // 더 높은 퀄리티도 시도
-    } else {
-      high = q; // 용량 초과 → 퀄리티 낮춤
-    }
-  }
-
-  // 5) 최종 Data URL 생성 (JPEG, bestQuality)
-  const compressedDataURL = canvas.toDataURL("image/jpeg", bestQuality);
-
-  return compressedDataURL;
-}

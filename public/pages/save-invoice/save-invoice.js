@@ -27,8 +27,11 @@ $(document).on("click", "#save-button", async function () {
     const clientPhone = $("#customer-phone .input").val().trim();
 
     // 2) 이미지 src → Blob 변환
-    const invoiceImgSrc = sessionStorage.getItem("invoice_base64Image") || null;
-    const productImgSrc = sessionStorage.getItem("product_base64Image") || null;
+    const invoiceImgSrc = $("#invoice-photo .image").attr("src") || null;
+    const productImgSrc =
+      $("#product-photo .image").attr("src") !== "/images/camera.png" ?
+        $("#product-photo .image").attr("src")
+      : null;
 
     // 3) 상품 리스트 수집
     const productInfos = [];
