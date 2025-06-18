@@ -3,7 +3,7 @@ $("#data-processing-page-access-button").on("click", function () {
   const bashPath = window.location.pathname.split("/")[1];
   const fileInput = document.getElementById("photoFile");
 
-  if (!fileInput.files) {
+  if (fileInput.files.length == 0) {
     alert("이미지를 선택해주세요.");
     return;
   }
