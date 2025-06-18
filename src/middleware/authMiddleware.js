@@ -1,8 +1,9 @@
+require("dotenv").config();
 const CompanyModel = require("../models/companyModel");
 
 module.exports = async (req, res, next) => {
   const { hash } = req.params;
-  if (hash === "admin") {
+  if (hash === process.env.ADMIN_ID) {
     req.company_id = "0"; // 컨트롤러에서 req.company_id가 0이면 전체조회 하도록 구현?
     next();
     return;
