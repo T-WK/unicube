@@ -53,11 +53,11 @@
           if (id !== null) {
             const bashPath = window.location.pathname.split("/")[1];
             if (id === "placeholder-choice-company") {
-              url = `/${bashPath}/api/company/`;
+              url = `/eElqYd63Ty0K/api/company/`;
               $company_dropbox = $el;
               addDropdownItem($company_dropbox, url);
             } else if (id === "placeholder-choice-product-name") {
-              url = `/${bashPath}/api/product/`;
+              url = `/eElqYd63Ty0K/api/product/`;
               $product_dropbox = $el;
               addDropdownItem($product_dropbox, url);
             }
@@ -106,7 +106,7 @@
       contentType: "json",
       success: function (data) {
         data.forEach(function (item_info) {
-          if (url === `/${bashPath}/api/product/`) {
+          if (url === `/eElqYd63Ty0K/api/product/`) {
             const $tr = $(`
                 <li class="dropdown-item">
                   <span id="company-id" class="hidden">${item_info.company_id}</span>
@@ -115,7 +115,7 @@
                 </li>
               `);
             $ul.append($tr);
-          } else if (url === `/${bashPath}/api/company/`) {
+          } else if (url === `/eElqYd63Ty0K/api/company/`) {
             const $tr = $(`
                 <li class="dropdown-item">
                   <span id="company-id" class="hidden">${item_info.id}</span>
@@ -131,7 +131,7 @@
         // invoice 페이지 이면서 상품 드롭박스를 만든 후 찾은 상품을 배치하기 위함.
         if (
           cleanPath.split("/").pop() === "invoice" &&
-          url === `/${bashPath}/api/product/`
+          url === `/eElqYd63Ty0K/api/product/`
         ) {
           const ocrData = JSON.parse(
             sessionStorage.getItem("ocrResult") || "{}",
@@ -160,7 +160,7 @@
         // invoice 페이지 이면서 회사 드롭박스를 만든 후 ocr데이터에 있는 상품의 회사를 찾기 위함.
         else if (
           cleanPath.split("/").pop() === "invoice" &&
-          url === `/${bashPath}/api/company/`
+          url === `/eElqYd63Ty0K/api/company/`
         ) {
           const ocrData = JSON.parse(
             sessionStorage.getItem("ocrResult") || "{}",
@@ -190,7 +190,7 @@
     const bashPath = window.location.pathname.split("/")[1];
 
     $.ajax({
-      url: `/${bashPath}/api/product/search`,
+      url: `/eElqYd63Ty0K/api/product/search`,
       type: "GET",
       data: { name: productName },
       success: function (product_info) {

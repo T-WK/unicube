@@ -2,12 +2,13 @@ $(function () {
   const basePath = window.location.pathname.split("/")[1];
   $.when(
     $.ajax({
-      url: `/${basePath}/api/product`,
+      //url needs to be changed
+      url: `/eElqYd63Ty0K/api/product`, 
       method: "GET",
       contentType: "json",
     }),
     $.ajax({
-      url: `/${basePath}/api/company`,
+      url: `/eElqYd63Ty0K/api/company`,
       method: "GET",
       contentType: "json",
     }),
