@@ -1,4 +1,4 @@
-$(document).on("click", "#add-product-button", function () {
+$(document).on("click", "#add-product-button > .button", function () {
   const $component = $(
     '<div class="component-container flex-container margin-container"></div>',
   );
@@ -15,7 +15,7 @@ $(document).on("click", "#add-product-button", function () {
   );
 });
 
-$(document).on("click", "#save-button", async function () {
+$(document).on("click", "#save-button > .button", async function () {
   try {
     // 1) 기본 데이터 수집
     const companyId = parseInt(

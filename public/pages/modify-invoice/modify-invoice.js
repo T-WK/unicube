@@ -119,11 +119,11 @@ function addComponentWithPromise() {
   });
 }
 
-$(document).on("click", "#add-product-button", function () {
+$(document).on("click", "#add-product-button > .button", function () {
   addComponentWithPromise();
 });
 
-$(document).on("click", "#save-button", async function () {
+$(document).on("click", "#save-button > .button", async function () {
   try {
     // 1) 기본 데이터 수집
     const companyId = parseInt(
@@ -190,7 +190,7 @@ $(document).on("click", "#save-button", async function () {
   }
 });
 
-$(document).on("click", ".delete-invoice-btn", async function () {
+$(document).on("click", ".delete-invoice-btn > .delete-button", async function () {
   try {
     const invoiceID = window.location.pathname.split("/").pop();
     const basePath = window.location.pathname.split("/")[1];
