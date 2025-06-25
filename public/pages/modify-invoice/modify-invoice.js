@@ -3,7 +3,7 @@ $(function () {
   $.when(
     $.ajax({
       //url needs to be changed
-      url: `/eElqYd63Ty0K/api/product`, 
+      url: `/eElqYd63Ty0K/api/product`,
       method: "GET",
       contentType: "json",
     }),
@@ -187,5 +187,29 @@ $(document).on("click", "#save-button", async function () {
   } catch (e) {
     console.error("오류 발생:", e);
     alert("데이터 처리 중 오류가 발생했습니다.");
+  }
+});
+
+$(document).on("click", ".delete-invoice-btn", async function () {
+  try {
+    const invoiceID = window.location.pathname.split("/").pop();
+    const basePath = window.location.pathname.split("/")[1];
+    $.ajax({
+      url: `/${basePath}/api/invoice/${invoiceID}`,
+      method: "DELETE",
+      contentType: "application/json",
+      success: function (res) {
+        sessionStorage.clear();
+        alert("삭제에 성공했습니다.");
+        window.location.href = `/${basePath}/search`;
+      },
+      error: function (xhr, status, err) {
+        console.error("삭제 실패:", err);
+        alert("삭제에 실패했습니다. 다시 시도해주세요.");
+      },
+    });
+  } catch (e) {
+    console.error("오류 발생:", e);
+    alert("삭제에 실패했습니다.");
   }
 });
