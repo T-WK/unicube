@@ -27,6 +27,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || "Internal Server Error");
 });
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Example app listening at http://0.0.0.0:${port}`);
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
