@@ -17,6 +17,16 @@ app.use("/:hash", authMiddleware);
 app.use("/:hash/api", apiRoutes);
 app.use("/:hash", pageRoutes);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.use((err, req, res, next) => {
+  if (err instanceof URIError) {
+    console.error("URI decode error:", req.originalUrl, err.message);
+    return res.status(400).send("Bad Request");
+  }
+
+  console.error("Unhandled error:", err);
+  res.status(err.status || 500).send(err.message || "Internal Server Error");
+});
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Example app listening at http://0.0.0.0:${port}`);
 });
