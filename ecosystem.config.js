@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'unicube',
+      name: 'old-invoice-system',
       script: 'npm',
       args: 'start',
       cwd: '/root/unicube',
